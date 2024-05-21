@@ -1,33 +1,31 @@
+using DataBaseAccess.CoreBook.Equipment;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Model.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+        private readonly DataBaseAccessService _dataBaseAccessService;
 
-        private readonly ILogger<WeatherForecastController> _logger;
-
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(DataBaseAccessService db)   
         {
-            _logger = logger;
+            _dataBaseAccessService = db;
+        }  
+
+        [HttpGet]
+        [Route("GetItems")]
+        public ActionResult GetItems()
+        {
+            return Ok(_dataBaseAccessService.GetItems());
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpGet]
+        [Route("GetWeapons")]
+        public ActionResult GetWeapons()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            return Ok(_dataBaseAccessService.GetWeapon());
         }
     }
 }
