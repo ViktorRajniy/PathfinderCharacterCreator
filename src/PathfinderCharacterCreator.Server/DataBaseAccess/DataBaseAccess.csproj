@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <Folder Include="Character\" />
-    <Folder Include="CoreBook\Equipment\" />
     <Folder Include="CoreBook\Feats\" />
   </ItemGroup>
 

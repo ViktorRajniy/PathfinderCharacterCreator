@@ -1,5 +1,6 @@
 using DataBaseAccess;
 using Microsoft.EntityFrameworkCore;
+using Model;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Добавление сервисов.
+builder.Services.AddScoped<DataBaseAccessService>();
 
 // Добавление базы данных.
 builder.Services.AddDbContext<ApplicationContext>(optionsBuilder =>
