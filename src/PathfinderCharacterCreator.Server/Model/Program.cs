@@ -12,7 +12,7 @@ builder.Services.AddSwaggerGen();
 
 // Добавление базы данных.
 builder.Services.AddDbContext<ApplicationContext>(optionsBuilder =>
-    optionsBuilder.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
+    optionsBuilder.UseNpgsql(builder.Configuration.GetConnectionString("Test")));
 
 var app = builder.Build();
 
