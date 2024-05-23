@@ -49,6 +49,15 @@
         /// <param name = "modelBuilder" ></ param >
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<DBUser>().HasData(
+                new DBUser
+                {
+                    Id = 1,
+                    Email = "email",
+                    Password = "password",
+                    CharacterList = new List<DBCharacter> {}
+                });
+
             #region DBEquipment
 
             #region Armor

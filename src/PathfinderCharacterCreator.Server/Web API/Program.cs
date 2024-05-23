@@ -1,5 +1,6 @@
 using DataBaseAccess;
 using Microsoft.EntityFrameworkCore;
+using Web_API.Servicies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,10 @@ builder.Services.AddSwaggerGen();
 // Добавление базы данных.
 builder.Services.AddDbContext<ApplicationContext>(optionsBuilder =>
     optionsBuilder.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
+
+// Добавление сервисов.
+builder.Services.AddScoped<CreationService>();
+builder.Services.AddScoped<DataAccessService>();
 
 var app = builder.Build();
 

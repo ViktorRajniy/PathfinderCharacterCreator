@@ -3,6 +3,7 @@
     using DataBaseAccess.CoreBook.Types;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.ComponentModel.DataAnnotations;
+    using System.Text.Json.Serialization;
 
     /// <summary>
     /// Структура описывающая общую информацию о персонаже в базе данных.
@@ -25,19 +26,9 @@
         /// <summary>
         /// Навигационное свойство.
         /// </summary>
+        [JsonIgnore]
         [ForeignKey(nameof(CharacterID))]
         public DBCharacter? Character { get; set; }
-
-        /// <summary>
-        /// Имя персонажа.
-        /// </summary>
-        [Required]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Уровень персонажа.
-        /// </summary>
-        public int Level { get; set; }
 
         /// <summary>
         /// Мировоззрение персонажа.
