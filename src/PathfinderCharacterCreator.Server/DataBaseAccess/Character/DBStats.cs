@@ -3,6 +3,7 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using System.ComponentModel.DataAnnotations;
     using DataBaseAccess.CoreBook.Types;
+    using System.Text.Json.Serialization;
 
     /// <summary>
     /// Параметры персонажа.
@@ -25,6 +26,7 @@
         /// <summary>
         /// Навигационное свойство.
         /// </summary>
+        [JsonIgnore]
         [ForeignKey(nameof(CharacterID))]
         public DBCharacter? Character { get; set; }
 

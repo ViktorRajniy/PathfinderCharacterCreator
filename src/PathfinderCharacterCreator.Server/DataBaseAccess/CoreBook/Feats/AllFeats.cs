@@ -260,7 +260,7 @@
                                 CanAssign = (info) => {return true; },
                                 Assign = (info, creationInfo) =>
                                 {
-                                    info.Stats.MaxHealthPoints += info.General.Level;
+                                    info.Stats.MaxHealthPoints += info.Level;
                                 }
                             },
                             new FeatBase()
@@ -313,7 +313,7 @@
                                 Name = "Ancestral paragon",
                                 Type = FeatType.General,
                                 Level = 3,
-                                CanAssign = (info) => { return info.General.Level >= 3; },
+                                CanAssign = (info) => { return info.Level >= 3; },
                                 Assign = (info, creationInfo) =>
                                 {
                                     creationInfo.AncestoryFeatCount++;
@@ -324,7 +324,7 @@
                                 Name = "Untrained improvisation",
                                 Type = FeatType.General,
                                 Level = 3,
-                                CanAssign = (info) => { return info.General.Level >= 3; },
+                                CanAssign = (info) => { return info.Level >= 3; },
                                 Assign = (info, creationInfo) => { }
                             },
 
@@ -337,7 +337,7 @@
                                 Name = "Expeditious search",
                                 Type = FeatType.General,
                                 Level = 7,
-                                CanAssign = (info) => { return info.General.Level >= 7; },
+                                CanAssign = (info) => { return info.Level >= 7; },
                                 Assign = (info, creationInfo) => { }
                             },
 
@@ -352,7 +352,7 @@
                                 Level = 11,
                                 CanAssign = (info) =>
                                 {
-                                    return info.General.Level >= 11 &&
+                                    return info.Level >= 11 &&
                                     info.Stats.Abilities[(int)AbilityType.Charisma] >=16;
                                 },
                                 Assign = (info, creationInfo) => { }
