@@ -31,6 +31,8 @@
         public DbSet<DBGeneralInfo> GeneralInfos { get; set; } = null!;
         public DbSet<DBStats> Stats { get; set; } = null!;
 
+        public DbSet<DBUser> Users { get; set; } = null!;
+
         #endregion
 
         /// <summary>
@@ -39,7 +41,7 @@
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
         : base(options)
         {
-            Database.EnsureDeleted();
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
@@ -50,13 +52,13 @@
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<DBUser>().HasData(
-                new DBUser
-                {
-                    Id = 1,
-                    Email = "email",
-                    Password = "password",
-                    CharacterList = new List<DBCharacter> {}
-                });
+            new DBUser
+            {
+                Id = 1,
+                Email = "email",
+                Password = "password",
+                CharacterList = new List<DBCharacter> {}
+            });
 
             #region DBEquipment
 
@@ -1421,6 +1423,12 @@
                 );
 
             #endregion
+
+            #endregion
+
+            #region Feats
+
+
 
             #endregion
         }

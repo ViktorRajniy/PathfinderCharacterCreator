@@ -1,10 +1,14 @@
-﻿using DataBaseAccess;
-using DataBaseAccess.Character;
-using DataBaseAccess.CoreBook.Types;
-using Model.Creation;
-
-namespace Web_API.Servicies
+﻿namespace Web_API.Servicies
 {
+    using DataBaseAccess;
+    using DataBaseAccess.Character;
+    using DataBaseAccess.CoreBook.Feats;
+    using DataBaseAccess.CoreBook.Types;
+    using Microsoft.EntityFrameworkCore;
+    using Model;
+    using Model.Creation;
+    using Web_API.Entities;
+
     public class CreationService
     {
         /// <summary>
@@ -18,6 +22,11 @@ namespace Web_API.Servicies
         private ApplicationContext _db;
 
         /// <summary>
+        /// Создаваемый персонаж.
+        /// </summary>
+        private Character _character;
+
+        /// <summary>
         /// Конструктор класса.
         /// </summary>
         /// <param name="db">Объект контекста базы данных.</param>
@@ -25,6 +34,24 @@ namespace Web_API.Servicies
         {
             _db = db;
             _factory = new CharacterFactory();
+            _character = new Character();
+        }
+
+        /// <summary>
+        /// Загружает в класс персонажа из базы данных для изменений..
+        /// </summary>
+        /// <param name="id">ID искомого персонажа.</param>
+        public void GetCharacter(int characterID)
+        {
+            var character = _db.Characters
+                                        .Include(c => c.General)
+                                        .Include(c => c.Stats)
+                                        .ToList()
+                                        .Find(c => c.ID == characterID);
+            if(character != null)
+            {
+                _character.Info = character;
+            }
         }
 
         /// <summary>
@@ -42,37 +69,85 @@ namespace Web_API.Servicies
         }
 
         /// <summary>
-        /// Возвращает персонажа из базы данных по ID.
+        /// Передающий фабрике информацию о персонаже, для установки
+        /// общих параметров персонажа.
         /// </summary>
-        /// <param name="id">ID искомого персонажа.</param>
-        /// <returns>Искомый персонаж.</returns>
-        public DBCharacter GetCharacter(int id)
+        /// <param name="info">Общая информация о персонаже.</param>
+        public void SetGeneralParameters(GeneralInfoView infoView)
         {
-            return GetDBCharactersList().Find(c => c.ID == id);
+            var get = new EnumGetter();
+            var info = new DBGeneralInfo();
+
+            GetCharacter(infoView.id);
+
+            info.ClassName = get.Class(infoView.ClassName);
+            info.SubClass = get.SubClass(info.ClassName, infoView.SubClass);
+            info.Ancestry = get.Ancestory(infoView.Ancestry);
+            info.Haritage = get.Haritage(info.Ancestry, infoView.Haritage);
+            info.Background = get.Background(infoView.Background);
+            info.Aligment = get.Aligment(infoView.Aligment);
+            info.Deity = get.Deity(infoView.Deity);
+
+            _factory.SetGeneralParameters(_character, info, infoView.Name);
+
+            _db.SaveChanges();
         }
 
         /// <summary>
-        /// Возвращает список всех персонажей в базе данных.
+        /// Передающий фабрике конечные характеристики персонажа.
         /// </summary>
-        /// <returns>Список персонажей.</returns>
-        public List<DBCharacter> GetDBCharactersList()
+        /// <param name="abilitiesView"></param>
+        public void SetAbilities(AbilitiesView abilitiesView)
         {
-            var charactersList = from character in _db.Characters
-                                 join stats in _db.Stats on character.ID equals stats.CharacterID
-                                 join general in _db.GeneralInfos on character.ID equals general.CharacterID
-                                 select new DBCharacter
-                                 {
-                                     ID = character.ID,
-                                     Name = character.Name,
-                                     ActionNames = character.ActionNames,
-                                     FeatNames = character.FeatNames,
-                                     ItemNames = character.ItemNames,
-                                     General = general,
-                                     Level = character.Level,
-                                     Stats = stats,
-                                     Wallet = character.Wallet,
-                                 };
-            return charactersList.ToList();
+            GetCharacter(abilitiesView.Id);
+
+            var abilities = new Dictionary<AbilityType, int>();
+            foreach (AbilityType ability in Enum.GetValues(typeof(AbilityType)))
+            {
+                abilities[ability] = abilitiesView.Abilities[(int)ability];
+            }
+            _factory.SetAbilities(_character.Info, abilities);
+
+            _db.SaveChanges();
+        }
+
+        /// <summary>
+        /// Устанавливает значение навыков персонажа.
+        /// </summary>
+        /// <param name="skillsView">Список умений персонажа.</param>
+        public void SetSkills(SkillsView skillsView)
+        {
+            GetCharacter(skillsView.Id);
+
+            var skills = new Dictionary<SkillType, ProficientyType>();
+            foreach (SkillType skill in Enum.GetValues(typeof(SkillType)))
+            {
+                skills[skill] = (ProficientyType)skillsView.Skills[(int)skill];
+            }
+            _factory.SetSkills(_character.Info, skills);
+
+            _db.SaveChanges();
+        }
+
+        /// <summary>
+        /// Устанавливает персонажу черты.
+        /// </summary>
+        /// <param name="featsView">Список черт.</param>
+        public void SetFeats(FeatsView featsView)
+        {
+            GetCharacter(featsView.Id);
+
+            foreach (string feat in featsView.Feats)
+                _factory.SetFeat(_character.Info, feat);
+
+            _db.SaveChanges();
+        }
+
+        public void DeleteCharacter(int id)
+        {
+            _db.Characters.Remove(_db.Characters.Find(id));
+
+            _db.SaveChanges();
         }
 
         private int InitializeDBCharacter(DBGeneralInfo general, DBStats stats)

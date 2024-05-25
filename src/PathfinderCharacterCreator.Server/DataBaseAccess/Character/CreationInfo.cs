@@ -59,5 +59,12 @@
         /// Количество общих черт.
         /// </summary>
         public int GeneralFeatCount { get; set; }
+
+        public CreationInfo()
+        {
+            AllowAncestoryAbility = new List<AbilityType> { };
+            ClassOptionAbility = new List<AbilityType> { };
+            AllowBackgroundAbility = new List<AbilityType> { };
+        }
     }
 }
