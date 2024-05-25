@@ -1,5 +1,6 @@
 using DataBaseAccess;
 using Microsoft.EntityFrameworkCore;
+using Model;
 using Web_API.Servicies;
 
 var builder = WebApplication.CreateBuilder(args);

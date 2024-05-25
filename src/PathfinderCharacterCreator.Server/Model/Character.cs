@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Model
+﻿namespace Model
 {
-    internal class Character
+    using DataBaseAccess.Character;
+    using Model.Editor;
+    using Model.LevelManager;
+
+    public class Character
     {
+        public DBCharacter Info { get; set; }
+
+        public ILevelManager LevelManager { get; set; }
+
+        public ICharacterEditor Editor { get; set; }
     }
 }
