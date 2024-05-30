@@ -46,7 +46,7 @@
 
                 if (characterID != null)
                 {
-                    return Ok(_dataAccessService.GetCharacter(characterID));
+                    return Ok(_dataAccessService.GetDBCharacter(characterID));
                 }
 
                 return NoContent();
@@ -89,7 +89,7 @@
             {
                 _creationService.SetGeneralParameters(generalInfo);
 
-                return Ok(_dataAccessService.GetCharacter(generalInfo.id));
+                return Ok(_dataAccessService.GetDBCharacter(generalInfo.id));
             }
             catch (Exception exception)
             {
@@ -110,7 +110,7 @@
             {
                 _creationService.SetAbilities(abilities);
 
-                return Ok(_dataAccessService.GetCharacter(abilities.Id));
+                return Ok(_dataAccessService.GetDBCharacter(abilities.Id));
             }
             catch (Exception exception)
             {
@@ -131,7 +131,7 @@
             {
                 _creationService.SetSkills(skills);
 
-                return Ok(_dataAccessService.GetCharacter(skills.Id));
+                return Ok(_dataAccessService.GetDBCharacter(skills.Id));
             }
             catch (Exception exception)
             {
@@ -152,7 +152,7 @@
             {
                 _creationService.SetFeats(feats);
 
-                return Ok(_dataAccessService.GetCharacter(feats.Id));
+                return Ok(_dataAccessService.GetDBCharacter(feats.Id));
             }
             catch (Exception exception)
             {
