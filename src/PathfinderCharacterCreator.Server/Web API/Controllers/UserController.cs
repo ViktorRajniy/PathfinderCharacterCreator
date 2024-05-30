@@ -5,6 +5,7 @@ using Web_API.Servicies;
 
 namespace Web_API.Controllers
 {
+    [Route("api/[controller]")]
     public class UserController : Controller
     {
         /// <summary>
@@ -19,6 +20,13 @@ namespace Web_API.Controllers
         public UserController(UserService dataAccess)
         {
             _userService = dataAccess;
+        }
+
+        [HttpGet]
+        [Route("test/get")]
+        public List<string> testGet()
+        {
+            return new List<string> { "123123", "321" };
         }
 
         /// <summary>
@@ -67,7 +75,7 @@ namespace Web_API.Controllers
         {
             try
             {
-                return Ok(_userService.Get(new ));
+                return Ok(_userService.GetUsersList());
             }
             catch (Exception ex)
             {

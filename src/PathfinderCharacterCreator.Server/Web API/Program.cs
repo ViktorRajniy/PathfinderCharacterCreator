@@ -23,6 +23,9 @@ builder.Services.AddScoped<UserService>();
 
 var app = builder.Build();
 
+app.UseCors(policyBuilder =>
+policyBuilder.WithOrigins("http://localhost:5173").AllowAnyHeader());
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
