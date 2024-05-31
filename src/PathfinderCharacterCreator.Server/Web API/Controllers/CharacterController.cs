@@ -1,9 +1,7 @@
 ﻿namespace Web_API.Controllers
 {
     using DataBaseAccess;
-    using DataBaseAccess.Character;
     using Microsoft.AspNetCore.Mvc;
-    using Web_API.Entities;
     using Web_API.Servicies;
 
     /// <summary>
@@ -72,91 +70,6 @@
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
-            }
-        }
-
-        /// <summary>
-        /// Пост запрос, отправляющий общие параметры персонажа.
-        /// </summary>
-        /// <param name="generalInfo">Общие параметры персонажа.</param>
-        /// <returns>Код сервера.</returns>
-        [HttpPost]
-        [Route("setGeneralParameters")]
-        public ActionResult<GeneralInfoView> SetGeneralParameters
-            ([FromBody] GeneralInfoView generalInfo)
-        {
-            try
-            {
-                _creationService.SetGeneralParameters(generalInfo);
-
-                return Ok(_dataAccessService.GetDBCharacter(generalInfo.id));
-            }
-            catch (Exception exception)
-            {
-                return BadRequest(exception.Message);
-            }
-        }
-
-        /// <summary>
-        /// Пост запрос, отправляющий конечные значения характеристик персонажа.
-        /// </summary>
-        /// <param name="abilities">Конечные значения характеристик персонажа.</param>
-        /// <returns>Код сервера.</returns>
-        [HttpPost]
-        [Route("setAbilities")]
-        public ActionResult<AbilitiesView> SetAbilities([FromBody] AbilitiesView abilities )
-        {
-            try
-            {
-                _creationService.SetAbilities(abilities);
-
-                return Ok(_dataAccessService.GetDBCharacter(abilities.Id));
-            }
-            catch (Exception exception)
-            {
-                return BadRequest(exception.Message);
-            }
-        }
-
-        /// <summary>
-        /// Пост запрос, отправляющий конечные значения навыков персонажа.
-        /// </summary>
-        /// <param name="abilities">Конечные значения навыков персонажа.</param>
-        /// <returns>Код сервера.</returns>
-        [HttpPost]
-        [Route("SetSkills")]
-        public ActionResult<SkillsView> SetSkills([FromBody] SkillsView skills)
-        {
-            try
-            {
-                _creationService.SetSkills(skills);
-
-                return Ok(_dataAccessService.GetDBCharacter(skills.Id));
-            }
-            catch (Exception exception)
-            {
-                return BadRequest(exception.Message);
-            }
-        }
-
-        /// <summary>
-        /// Пост запрос отправляющий список названий выбранных пользователем черт.
-        /// </summary>
-        /// <param name="feats"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("SetFeats")]
-        public ActionResult<FeatsView> SetFeats([FromBody] FeatsView feats)
-        {
-            try
-            {
-                _creationService.SetFeats(feats);
-
-                return Ok(_dataAccessService.GetDBCharacter(feats.Id));
-            }
-            catch (Exception exception)
-            {
-                return BadRequest(exception.Message);
             }
         }
 
