@@ -72,7 +72,7 @@
         /// Передающий фабрике информацию о персонаже, для установки
         /// общих параметров персонажа.
         /// </summary>
-        /// <param name="info">Общая информация о персонаже.</param>
+        /// <param name="infoView">Общая информация о персонаже.</param>
         public void SetGeneralParameters(GeneralInfoView infoView)
         {
             var get = new EnumGetter();
