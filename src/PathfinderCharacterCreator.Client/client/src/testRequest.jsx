@@ -1,10 +1,9 @@
 import { useState } from 'react'
 import './App.css'
-import { useEffect } from 'react'
 
 const BASE_URL = "https://localhost:7160/api/"
 
-function App() {
+function TestRequest() {
 	const [url, setUrl] = useState('')
 	const [responseData, setResponseData] = useState("Hello world")
 
@@ -89,4 +88,4 @@ function App() {
 	)
 }
 
-export default App
+export default TestRequest
