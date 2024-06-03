@@ -12,7 +12,7 @@
         /// Метод задаёт значения предыстории преступника в создаваемого персонажа.
         /// </summary>
         /// <param name="character">Изменяемый персонаж.</param>
-        public void SetBackgroundInfo(DBCharacter character, CreationInfo info)
+        public void SetBackgroundInfo(DBCharacter character)
         {
             var service = new CreationGeneralInfoService();
 
@@ -21,10 +21,10 @@
             character.Stats.Skills[(int)SkillType.Stealth]
                 = ProficientyType.Trained;
 
-            info.AllowBackgroundAbility.Add(AbilityType.Dexterity);
-            info.AllowBackgroundAbility.Add(AbilityType.Intelligence);
+            character.CreationInfo.BackgroundAbility.Add(AbilityType.Dexterity);
+            character.CreationInfo.BackgroundAbility.Add(AbilityType.Intelligence);
 
-            service.SetFeat(character, info, "Experienced smuggler");
+            service.SetFeat(character, "Experienced smuggler");
         }
     }
 }

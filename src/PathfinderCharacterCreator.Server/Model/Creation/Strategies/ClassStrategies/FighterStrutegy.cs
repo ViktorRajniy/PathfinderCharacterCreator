@@ -1,6 +1,5 @@
 ﻿namespace Model.Creation.Strategies
 {
-    using DataBaseAccess.Character;
     using DataBaseAccess.CoreBook.Types;
     using Model.Editor;
     using Model.LevelManager;
@@ -14,7 +13,7 @@
         /// Метод задаёт значения класса воина в создаваемого персонажа.
         /// </summary>
         /// <param name="character">Изменяемый персонаж.</param>
-        public void SetClassInfo(Character character, CreationInfo info)
+        public void SetClassInfo(Character character)
         {
             var service = new CreationGeneralInfoService();
 
@@ -24,8 +23,7 @@
 
             character.Info.General.ClassName = ClassType.Fighter;
 
-            info.OptionClassAbility = true;
-            info.ClassOptionAbility = [AbilityType.Strength, AbilityType.Dexterity];
+            character.Info.CreationInfo.ClassOptionAbility = [AbilityType.Strength, AbilityType.Dexterity];
 
             character.Info.Stats.Skills[(int)SkillType.Perception]
                 = ProficientyType.Expert;
@@ -49,7 +47,7 @@
                                         ProficientyType.Trained,
                                         ProficientyType.Trained);
 
-            info.SkillsCount += 3;
+            character.Info.CreationInfo.SkillsCount += 2;
 
             character.Info.ItemNames.AddRange( new List<string>
                                 {

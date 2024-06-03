@@ -28,6 +28,7 @@
         public DbSet<DBWeapon> Weapons { get; set; } = null!;
         public DbSet<DBArmor> Armors { get; set; } = null!;
         public DbSet<DBCharacter> Characters { get; set; } = null!;
+        public DbSet<DBCreationInfo> CreationInfos { get; set; } = null!;
         public DbSet<DBGeneralInfo> GeneralInfos { get; set; } = null!;
         public DbSet<DBStats> Stats { get; set; } = null!;
         public DbSet<DBUser> Users { get; set; } = null!;
@@ -40,7 +41,7 @@
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
         : base(options)
         {
-            //Database.EnsureDeleted();
+            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 

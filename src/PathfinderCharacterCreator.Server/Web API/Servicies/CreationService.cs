@@ -2,7 +2,6 @@
 {
     using DataBaseAccess;
     using DataBaseAccess.Character;
-    using DataBaseAccess.CoreBook.Feats;
     using DataBaseAccess.CoreBook.Types;
     using Microsoft.EntityFrameworkCore;
     using Model;
@@ -46,6 +45,7 @@
             var character = _db.Characters
                                         .Include(c => c.General)
                                         .Include(c => c.Stats)
+                                        .Include(c=>c.CreationInfo)
                                         .ToList()
                                         .Find(c => c.ID == characterID);
             if(character != null)
@@ -62,10 +62,10 @@
         {
             var general = InitializeDBGeneralInfo();
             var stats = InitializeDBStats();
-            int characterID = InitializeDBCharacter(general, stats);
-            _db.SaveChanges();
+            var creationInfo = InitializeDBCreationInfo();
+            int characterID = InitializeDBCharacter(general, stats, creationInfo);
 
-            return _db.Characters.OrderBy(c => c.ID).Last().ID;
+            return characterID;
         }
 
         /// <summary>
@@ -150,7 +150,7 @@
             _db.SaveChanges();
         }
 
-        private int InitializeDBCharacter(DBGeneralInfo general, DBStats stats)
+        private int InitializeDBCharacter(DBGeneralInfo general, DBStats stats, DBCreationInfo info)
         {
             var character = new DBCharacter()
             {
@@ -159,6 +159,7 @@
                 Level = 1,
                 General = general,
                 Stats = stats,
+                CreationInfo = info,
                 Wallet = 0,
                 FeatNames = new List<string>() { },
                 ActionNames = new List<string>() { },
@@ -166,8 +167,9 @@
             };
 
             _db.Characters.Add(character);
+            _db.SaveChanges();
 
-            return character.ID;
+            return _db.Characters.OrderBy(c=>c.ID).Last().ID;
         }
 
         private DBStats InitializeDBStats()
@@ -207,6 +209,13 @@
             _db.GeneralInfos.Add(general);
 
             return general;
+        }
+
+        private DBCreationInfo InitializeDBCreationInfo()
+        {
+            var creationInfo = new DBCreationInfo();
+
+            return creationInfo;
         }
     }
 }

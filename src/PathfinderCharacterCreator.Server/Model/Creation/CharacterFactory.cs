@@ -13,11 +13,14 @@
         /// <summary>
         /// Промежуточная информация для создания персонажа.
         /// </summary>
-        public CreationInfo CreationInfo { get; private set; }
+        public DBCreationInfo CreationInfo { get; private set; }
 
+        /// <summary>
+        /// Конструктор класса.
+        /// </summary>
         public CharacterFactory()
         {
-            CreationInfo = new CreationInfo();
+            CreationInfo = new DBCreationInfo();
         }
 
         /// <summary>
@@ -35,9 +38,9 @@
 
             character.Info.Wallet = 1500;
 
-            strategies.Class[info.ClassName].SetClassInfo(character, CreationInfo);
-            strategies.Ancestory[info.Ancestry].SetAncestriesInfo(character.Info, info.Haritage, CreationInfo);
-            strategies.Background[info.Background].SetBackgroundInfo(character.Info, CreationInfo);
+            strategies.Class[info.ClassName].SetClassInfo(character);
+            strategies.Ancestory[info.Ancestry].SetAncestriesInfo(character.Info);
+            strategies.Background[info.Background].SetBackgroundInfo(character.Info);
         }
 
         /// <summary>
@@ -80,7 +83,7 @@
 
             if (feat != null && feat.CanAssign(character))
             {
-                feat.Assign(character, CreationInfo);
+                feat.Assign(character);
                 character.FeatNames.Add(feat.Name);
             }
         }

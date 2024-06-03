@@ -12,7 +12,7 @@
         /// Метод задаёт значения предыстории шарлатана в создаваемого персонажа.
         /// </summary>
         /// <param name="character">Изменяемый персонаж.</param>
-        public void SetBackgroundInfo(DBCharacter character, CreationInfo info)
+        public void SetBackgroundInfo(DBCharacter character)
         {
             var service = new CreationGeneralInfoService();
 
@@ -21,10 +21,10 @@
             character.Stats.Skills[(int)SkillType.Deception]
                 = ProficientyType.Trained;
 
-            info.AllowBackgroundAbility.Add(AbilityType.Intelligence);
-            info.AllowBackgroundAbility.Add(AbilityType.Charisma);
+            character.CreationInfo.BackgroundAbility.Add(AbilityType.Intelligence);
+            character.CreationInfo.BackgroundAbility.Add(AbilityType.Charisma);
 
-            service.SetFeat(character, info, "Charming liar");
+            service.SetFeat(character, "Charming liar");
         }
     }
 }
