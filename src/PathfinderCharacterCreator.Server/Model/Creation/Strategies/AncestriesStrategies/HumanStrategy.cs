@@ -12,7 +12,7 @@
         /// Метод задаёт значения родословной человека в создаваемого персонажа.
         /// </summary>
         /// <param name="character">Изменяемый персонаж.</param>
-        public void SetAncestriesInfo(DBCharacter character, HaritageType haritage, CreationInfo info)
+        public void SetAncestriesInfo(DBCharacter character)
         {
             var service = new CreationGeneralInfoService();
 
@@ -24,17 +24,14 @@
 
             character.Stats.Speed = 25;
 
-            info.SecondAncestoryAbility = true;
-            info.AllowAncestoryAbility = null;
-
-            if (haritage == HaritageType.SkilledHeritage)
+            if (character.General.Haritage == HaritageType.SkilledHeritage)
             {
-                service.SetFeat(character, info, "Skilled heritage");
+                service.SetFeat(character, "Skilled heritage");
             }
 
-            if (haritage == HaritageType.VersatileHeritage)
+            if (character.General.Haritage == HaritageType.VersatileHeritage)
             {
-                service.SetFeat(character, info, "Versatile heritage");
+                service.SetFeat(character, "Versatile heritage");
             }
         }
     }

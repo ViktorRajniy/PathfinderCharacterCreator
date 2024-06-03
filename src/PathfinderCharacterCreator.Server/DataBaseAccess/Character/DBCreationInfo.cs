@@ -1,44 +1,46 @@
 ﻿namespace DataBaseAccess.Character
 {
     using DataBaseAccess.CoreBook.Types;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
-    public class CreationInfo
+    /// <summary>
+    /// Описывает информацию о персонаже для создания.
+    /// </summary>
+    [Table("CreationInfo")]
+    public class DBCreationInfo
     {
         /// <summary>
-        /// Флаг второй свободной характеристики родословной.
-        /// True - 2 свободные характеристики.
-        /// False - 1 свободная характеристика.
+        /// ID информации о персонаже.
         /// </summary>
-        public bool SecondAncestoryAbility { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { get; set; }
 
         /// <summary>
         /// Список доступных для повышения характеристик родословной.
         /// Может быть пустым, в случае 2 свободных характеристик.
         /// </summary>
-        public List<AbilityType>? AllowAncestoryAbility { get; set; }
-
-        /// <summary>
-        /// Флаг выбора характеристики класса.
-        /// True - если нужно выбрать характеристику класса.
-        /// False - если не нужно.
-        /// </summary>
-        public bool OptionClassAbility { get; set; }
+        [Required]
+        public List<AbilityType> AncestoryAbility { get; set; } = new List<AbilityType>() { };
 
         /// <summary>
         /// Список доступных для повышения характеристик класса.
         /// Может быть пустым, если не нужно выбирать характеристику.
         /// </summary>
-        public List<AbilityType>? ClassOptionAbility { get; set; }
+        [Required]
+        public List<AbilityType> ClassOptionAbility { get; set; } = new List<AbilityType>() { };
 
         /// <summary>
-        /// Список доступных для повышения характеристик предыстории.
+        /// Список из двух доступных для повышения характеристик предыстории.
         /// </summary>
-        public List<AbilityType> AllowBackgroundAbility { get; set; }
+        [Required]
+        public List<AbilityType> BackgroundAbility { get; set; } = new List<AbilityType>() { };
 
         /// <summary>
         /// Количество навыков персонажа.
         /// </summary>
-        public int SkillsCount { get; set; }
+        public int SkillsCount { get; set; } = 0;
 
         /// <summary>
         /// Количество классовых черт.
@@ -59,12 +61,5 @@
         /// Количество общих черт.
         /// </summary>
         public int GeneralFeatCount { get; set; }
-
-        public CreationInfo()
-        {
-            AllowAncestoryAbility = new List<AbilityType> { };
-            ClassOptionAbility = new List<AbilityType> { };
-            AllowBackgroundAbility = new List<AbilityType> { };
-        }
     }
 }

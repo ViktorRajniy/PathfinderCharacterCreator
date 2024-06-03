@@ -116,7 +116,7 @@
         /// <param name="info">Информация о создании персонажа.</param>
         /// <param name="featName">Применяемая черта.</param>
         /// <returns>Изменённый персонаж.</returns>
-        public void SetFeat(DBCharacter character, CreationInfo info, string featName)
+        public void SetFeat(DBCharacter character, string featName)
         {
             var featManager = new FeatManager();
 
@@ -124,7 +124,7 @@
 
             if (feat != null && feat.CanAssign(character))
             {
-                feat.Assign(character, info);
+                feat.Assign(character);
                 character.FeatNames.Add(feat.Name);
             }
         }

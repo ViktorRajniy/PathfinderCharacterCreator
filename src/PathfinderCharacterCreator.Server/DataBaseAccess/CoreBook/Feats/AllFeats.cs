@@ -56,7 +56,7 @@
                                 Type = FeatType.Base,
                                 Level = 1,
                                 CanAssign = (info) => { return true; },
-                                Assign = (info, creationInfo) => {},
+                                Assign = (info) => {},
                             },
                             new FeatBase()
                             {
@@ -64,7 +64,7 @@
                                 Type = FeatType.Base,
                                 Level = 1,
                                 CanAssign = (info) => { return true; },
-                                Assign = (info, creationInfo) => {},
+                                Assign = (info) => {},
                             },
 
                             #endregion
@@ -79,7 +79,7 @@
                                 Type = FeatType.General,
                                 Level = 1,
                                 CanAssign = (info) => { return true; },
-                                Assign = (info, creationInfo) =>
+                                Assign = (info) =>
                                 {
                                     bool lightUnrained =
                                     info.Stats.ArmorProficienty[(int)ArmorType.Light]
@@ -119,7 +119,7 @@
                                 Type = FeatType.General,
                                 Level = 1,
                                 CanAssign = (info) => { return true; },
-                                Assign = (info, creationInfo) => {},
+                                Assign = (info) => {},
                             },
                             new FeatBase()
                             {
@@ -132,7 +132,7 @@
                                     info.Stats.Skills[(int)SkillType.Perception]
                                     == ProficientyType.Trained;
                                 },
-                                Assign = (info, creationInfo) =>
+                                Assign = (info) =>
                                 {
                                     info.Stats.Skills[(int)SkillType.Perception]
                                     = ProficientyType.Expert;
@@ -149,7 +149,7 @@
                                     info.Stats.SavingThrows[(int)SavingThrowType.Fortitude]
                                     == ProficientyType.Trained;
                                 },
-                                Assign = (info, creationInfo) =>
+                                Assign = (info) =>
                                 {
                                     info.Stats.SavingThrows[(int)SavingThrowType.Fortitude]
                                     = ProficientyType.Expert;
@@ -166,7 +166,7 @@
                                     info.Stats.SavingThrows[(int)SavingThrowType.Reflex]
                                     == ProficientyType.Trained;
                                 },
-                                Assign = (info, creationInfo) =>
+                                Assign = (info) =>
                                 {
                                     info.Stats.SavingThrows[(int)SavingThrowType.Reflex]
                                     = ProficientyType.Expert;
@@ -183,7 +183,7 @@
                                     info.Stats.SavingThrows[(int)SavingThrowType.Will]
                                     == ProficientyType.Trained;
                                 },
-                                Assign = (info, creationInfo) =>
+                                Assign = (info) =>
                                 {
                                     info.Stats.SavingThrows[(int)SavingThrowType.Will]
                                     = ProficientyType.Expert;
@@ -195,7 +195,7 @@
                                 Type = FeatType.General,
                                 Level = 1,
                                 CanAssign = (info) => { return true; },
-                                Assign = (info, creationInfo) => {},
+                                Assign = (info) => {},
                             },
                             new FeatBase()
                             {
@@ -203,7 +203,7 @@
                                 Type = FeatType.General,
                                 Level = 1,
                                 CanAssign = (info) => { return info.Stats.Abilities[(int)AbilityType.Dexterity] >= 14; },
-                                Assign = (info, creationInfo) => {},
+                                Assign = (info) => {},
                             },
                             new FeatBase()
                             {
@@ -211,7 +211,7 @@
                                 Type = FeatType.General,
                                 Level = 1,
                                 CanAssign = (info) => { return info.Stats.Abilities[(int)AbilityType.Constitution] >= 14; },
-                                Assign = (info, creationInfo) => {},
+                                Assign = (info) => {},
                             },
                             new FeatBase()
                             {
@@ -223,7 +223,7 @@
                                     return
                                     info.Stats.Abilities[(int)AbilityType.Dexterity] >= 14;
                                 },
-                                Assign = (info, creationInfo) =>
+                                Assign = (info) =>
                                 {
                                     info.Stats.Speed += 5;
                                 },
@@ -234,7 +234,7 @@
                                 Type = FeatType.General,
                                 Level = 1,
                                 CanAssign = (info) => {return true; },
-                                Assign = (info, creationInfo) => {}
+                                Assign = (info) => {}
                             },
                             new FeatBase()
                             {
@@ -242,7 +242,7 @@
                                 Type = FeatType.General,
                                 Level = 1,
                                 CanAssign = (info) => {return true; },
-                                Assign = (info, creationInfo) =>
+                                Assign = (info) =>
                                 {
                                     // TODO
                                     // info.Actions.Add(new DBAction()
@@ -258,7 +258,7 @@
                                 Type = FeatType.General,
                                 Level = 1,
                                 CanAssign = (info) => {return true; },
-                                Assign = (info, creationInfo) =>
+                                Assign = (info) =>
                                 {
                                     info.Stats.MaxHealthPoints += info.Level;
                                 }
@@ -269,7 +269,7 @@
                                 Type = FeatType.General,
                                 Level = 1,
                                 CanAssign = (info) => { return true; },
-                                Assign = (info, creationInfo) =>
+                                Assign = (info) =>
                                 {
                                     bool simpleUnrained =
                                     info.Stats.WeaponProficienty[(int)WeaponType.Simple]
@@ -314,9 +314,9 @@
                                 Type = FeatType.General,
                                 Level = 3,
                                 CanAssign = (info) => { return info.Level >= 3; },
-                                Assign = (info, creationInfo) =>
+                                Assign = (info) =>
                                 {
-                                    creationInfo.AncestoryFeatCount++;
+                                    info.CreationInfo.AncestoryFeatCount++;
                                 }
                             },
                             new FeatBase
@@ -325,7 +325,7 @@
                                 Type = FeatType.General,
                                 Level = 3,
                                 CanAssign = (info) => { return info.Level >= 3; },
-                                Assign = (info, creationInfo) => { }
+                                Assign = (info) => { }
                             },
 
                             #endregion
@@ -338,7 +338,7 @@
                                 Type = FeatType.General,
                                 Level = 7,
                                 CanAssign = (info) => { return info.Level >= 7; },
-                                Assign = (info, creationInfo) => { }
+                                Assign = (info) => { }
                             },
 
                             #endregion
@@ -355,7 +355,7 @@
                                     return info.Level >= 11 &&
                                     info.Stats.Abilities[(int)AbilityType.Charisma] >=16;
                                 },
-                                Assign = (info, creationInfo) => { }
+                                Assign = (info) => { }
                             },
 
                             #endregion
@@ -395,7 +395,7 @@
                         info.Stats.Skills[(int)SkillType.Society]
                         == ProficientyType.Trained;
                     },
-                    Assign = (info, creationInfo) => {},
+                    Assign = (info) => {},
                 },
                 new FeatBase()
                 {
@@ -414,7 +414,7 @@
                         info.Stats.Skills[(int)SkillType.Religion]
                         == ProficientyType.Trained;
                     },
-                    Assign = (info, creationInfo) => {},
+                    Assign = (info) => {},
                 },
                 new FeatBase()
                 {
@@ -433,7 +433,7 @@
                         info.Stats.Skills[(int)SkillType.Religion]
                         == ProficientyType.Trained;
                     },
-                    Assign = (info, creationInfo) =>
+                    Assign = (info) =>
                     {
                         // TODO
                         // info.Actions.Add(new Action()
@@ -450,9 +450,9 @@
                     Type = FeatType.Base,
                     Level = 1,
                     CanAssign = (info) => { return true; },
-                    Assign = (info, creationInfo) =>
+                    Assign = (info) =>
                     {
-                        creationInfo.SkillsCount++;
+                        info.CreationInfo.SkillsCount++;
                     },
                 },
 
@@ -471,7 +471,7 @@
                                     info.Stats.Skills[(int)SkillType.Acrobatics] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                             new FeatBase()
                             {
@@ -484,7 +484,7 @@
                                     info.Stats.Skills[(int)SkillType.Acrobatics] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                             new FeatBase()
                             {
@@ -497,7 +497,7 @@
                                     info.Stats.Skills[(int)SkillType.Acrobatics] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                             new FeatBase()
                             {
@@ -510,7 +510,7 @@
                                     info.Stats.Skills[(int)SkillType.Acrobatics] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                             new FeatBase()
                             {
@@ -525,7 +525,7 @@
                                     info.Stats.Skills[(int)SkillType.Acrobatics] !=
                                     ProficientyType.Trained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                             new FeatBase()
                             {
@@ -540,7 +540,7 @@
                                     info.Stats.Skills[(int)SkillType.Acrobatics] ==
                                     ProficientyType.Legend;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                             new FeatBase()
                             {
@@ -555,7 +555,7 @@
                                     info.Stats.Skills[(int)SkillType.Acrobatics] ==
                                     ProficientyType.Legend;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
 
                 #endregion
@@ -573,7 +573,7 @@
                                     info.Stats.Skills[(int)SkillType.Arcana] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                             new FeatBase()
                             {
@@ -586,7 +586,7 @@
                                     info.Stats.Skills[(int)SkillType.Arcana] ==
                                     ProficientyType.Legend;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
 
                 #endregion
@@ -604,7 +604,7 @@
                                     info.Stats.Skills[(int)SkillType.Athletics] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                             new FeatBase()
                             {
@@ -617,7 +617,7 @@
                                     info.Stats.Skills[(int)SkillType.Athletics] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) =>
+                                Assign = (info) =>
                                 {
                                     // Максимальный перегруз +2
                                 },
@@ -633,7 +633,7 @@
                                     info.Stats.Skills[(int)SkillType.Athletics] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                             new FeatBase()
                             {
@@ -646,7 +646,7 @@
                                     info.Stats.Skills[(int)SkillType.Athletics] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                             new FeatBase()
                             {
@@ -659,7 +659,7 @@
                                     info.Stats.Skills[(int)SkillType.Athletics] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                             new FeatBase()
                             {
@@ -674,7 +674,7 @@
                                     info.Stats.Skills[(int)SkillType.Athletics] !=
                                     ProficientyType.Trained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                             new FeatBase()
                             {
@@ -689,7 +689,7 @@
                                     info.Stats.Skills[(int)SkillType.Athletics] !=
                                     ProficientyType.Trained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                             new FeatBase()
                             {
@@ -704,7 +704,7 @@
                                     info.Stats.Skills[(int)SkillType.Athletics] !=
                                     ProficientyType.Trained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                             new FeatBase()
                             {
@@ -719,7 +719,7 @@
                                     info.Stats.Skills[(int)SkillType.Athletics] ==
                                     ProficientyType.Legend;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                             new FeatBase()
                             {
@@ -734,7 +734,7 @@
                                     info.Stats.Skills[(int)SkillType.Athletics] ==
                                     ProficientyType.Legend;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                             new FeatBase()
                             {
@@ -749,7 +749,7 @@
                                     info.Stats.Skills[(int)SkillType.Athletics] ==
                                     ProficientyType.Legend;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
 
                 #endregion
@@ -767,7 +767,7 @@
                                     info.Stats.Skills[(int)SkillType.Crafting] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -780,7 +780,7 @@
                                     info.Stats.Skills[(int)SkillType.Crafting] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -793,7 +793,7 @@
                                     info.Stats.Skills[(int)SkillType.Crafting] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -806,7 +806,7 @@
                                     info.Stats.Skills[(int)SkillType.Crafting] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -819,7 +819,7 @@
                                     info.Stats.Skills[(int)SkillType.Crafting] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -834,7 +834,7 @@
                                     info.Stats.Skills[(int)SkillType.Crafting] !=
                                     ProficientyType.Trained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -847,7 +847,7 @@
                                     info.Stats.Skills[(int)SkillType.Crafting] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -862,7 +862,7 @@
                                     info.Stats.Skills[(int)SkillType.Crafting] ==
                                     ProficientyType.Legend;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -877,7 +877,7 @@
                                     info.Stats.Skills[(int)SkillType.Crafting] ==
                                     ProficientyType.Legend;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -890,7 +890,7 @@
                                     info.Stats.Skills[(int)SkillType.Crafting] ==
                                     ProficientyType.Legend;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
 
                 #endregion
@@ -908,7 +908,7 @@
                                     info.Stats.Skills[(int)SkillType.Deception] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -921,7 +921,7 @@
                                     info.Stats.Skills[(int)SkillType.Deception] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -934,7 +934,7 @@
                                     info.Stats.Skills[(int)SkillType.Deception] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -947,7 +947,7 @@
                                     info.Stats.Skills[(int)SkillType.Deception] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -962,7 +962,7 @@
                                     info.Stats.Skills[(int)SkillType.Deception] !=
                                     ProficientyType.Trained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -977,7 +977,7 @@
                                     info.Stats.Skills[(int)SkillType.Deception] !=
                                     ProficientyType.Trained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -992,7 +992,7 @@
                                     info.Stats.Skills[(int)SkillType.Deception] ==
                                     ProficientyType.Legend;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -1007,7 +1007,7 @@
                                     info.Stats.Skills[(int)SkillType.Deception] ==
                                     ProficientyType.Legend;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
 
                 #endregion
@@ -1025,7 +1025,7 @@
                                     info.Stats.Skills[(int)SkillType.Diplomacy] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -1038,7 +1038,7 @@
                                     info.Stats.Skills[(int)SkillType.Diplomacy] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -1051,7 +1051,7 @@
                                     info.Stats.Skills[(int)SkillType.Diplomacy] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -1066,7 +1066,7 @@
                                     info.Stats.Skills[(int)SkillType.Diplomacy] !=
                                     ProficientyType.Trained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -1081,7 +1081,7 @@
                                     info.Stats.Skills[(int)SkillType.Diplomacy] ==
                                     ProficientyType.Legend;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -1094,7 +1094,7 @@
                                     info.Stats.Skills[(int)SkillType.Diplomacy] ==
                                     ProficientyType.Legend;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
 
                 #endregion
@@ -1112,7 +1112,7 @@
                                     info.Stats.Skills[(int)SkillType.Intimidation] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -1125,7 +1125,7 @@
                                     info.Stats.Skills[(int)SkillType.Intimidation] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -1138,7 +1138,7 @@
                                     info.Stats.Skills[(int)SkillType.Intimidation] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -1154,7 +1154,7 @@
                                     ProficientyType.Trained) &&
                                     info.Stats.Abilities[(int)AbilityType.Strength] == 16;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -1169,7 +1169,7 @@
                                     info.Stats.Skills[(int)SkillType.Intimidation] !=
                                     ProficientyType.Trained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -1184,7 +1184,7 @@
                                     info.Stats.Skills[(int)SkillType.Intimidation] !=
                                     ProficientyType.Trained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -1199,7 +1199,7 @@
                                     info.Stats.Skills[(int)SkillType.Intimidation] ==
                                     ProficientyType.Legend;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -1214,7 +1214,7 @@
                                     info.Stats.Skills[(int)SkillType.Intimidation] ==
                                     ProficientyType.Legend;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
 
                 #endregion
@@ -1232,7 +1232,7 @@
                                     info.Stats.Skills[(int)SkillType.Lore] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -1245,7 +1245,7 @@
                                     info.Stats.Skills[(int)SkillType.Lore] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -1260,7 +1260,7 @@
                                     info.Stats.Skills[(int)SkillType.Lore] !=
                                     ProficientyType.Trained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -1273,7 +1273,7 @@
                                     info.Stats.Skills[(int)SkillType.Lore] ==
                                     ProficientyType.Legend;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
 
                 #endregion
@@ -1291,7 +1291,7 @@
                                     info.Stats.Skills[(int)SkillType.Medicine] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) =>
+                                Assign = (info) =>
                                 {
                                     // TODO Action Лечение ран в бою.
                                 },
@@ -1309,7 +1309,7 @@
                                     info.Stats.Skills[(int)SkillType.Medicine] !=
                                     ProficientyType.Trained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -1324,7 +1324,7 @@
                                     info.Stats.Skills[(int)SkillType.Medicine] !=
                                     ProficientyType.Trained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -1339,7 +1339,7 @@
                                     info.Stats.Skills[(int)SkillType.Medicine] !=
                                     ProficientyType.Trained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -1352,7 +1352,7 @@
                                     info.Stats.Skills[(int)SkillType.Medicine] ==
                                     ProficientyType.Legend;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 #endregion
 
@@ -1369,7 +1369,7 @@
                                     info.Stats.Skills[(int)SkillType.Nature] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -1382,7 +1382,7 @@
                                     info.Stats.Skills[(int)SkillType.Nature] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                             {
@@ -1397,7 +1397,7 @@
                                     info.Stats.Skills[(int)SkillType.Nature] !=
                                     ProficientyType.Trained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
 
                 #endregion
@@ -1415,7 +1415,7 @@
                                     info.Stats.Skills[(int)SkillType.Occultism] !=
                                     ProficientyType.Untrained;
                                 },
-                                Assign = (info, creationInfo) => { },
+                                Assign = (info) => { },
                             },
                 new FeatBase()
                 {
@@ -1430,7 +1430,7 @@
                         info.Stats.Skills[(int)SkillType.Occultism] ==
                         ProficientyType.Legend;
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
 
                 #endregion
@@ -1448,7 +1448,7 @@
                         info.Stats.Skills[(int)SkillType.Performance] !=
                         ProficientyType.Untrained;
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
                 new FeatBase()
                 {
@@ -1461,7 +1461,7 @@
                         info.Stats.Skills[(int)SkillType.Performance] !=
                         ProficientyType.Untrained;
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
                 new FeatBase()
                 {
@@ -1474,7 +1474,7 @@
                         info.Stats.Skills[(int)SkillType.Performance] !=
                         ProficientyType.Untrained;
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
                 new FeatBase()
                 {
@@ -1488,7 +1488,7 @@
                         ProficientyType.Legend &&
                         info.FeatNames.Contains("Vertuosic performer");
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
 
                 #endregion
@@ -1506,7 +1506,7 @@
                         info.Stats.Skills[(int)SkillType.Religion] !=
                         ProficientyType.Untrained;
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
                 new FeatBase()
                 {
@@ -1519,7 +1519,7 @@
                         info.Stats.Skills[(int)SkillType.Religion] ==
                         ProficientyType.Legend;
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
 
                 #endregion
@@ -1537,7 +1537,7 @@
                         info.Stats.Skills[(int)SkillType.Society] !=
                         ProficientyType.Untrained;
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
                 new FeatBase()
                 {
@@ -1550,7 +1550,7 @@
                         info.Stats.Skills[(int)SkillType.Society] !=
                         ProficientyType.Untrained;
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
                 new FeatBase()
                 {
@@ -1563,7 +1563,7 @@
                         info.Stats.Skills[(int)SkillType.Society] !=
                         ProficientyType.Untrained;
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
                 new FeatBase()
                 {
@@ -1576,7 +1576,7 @@
                         info.Stats.Skills[(int)SkillType.Society] !=
                         ProficientyType.Untrained;
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
                 new FeatBase()
                 {
@@ -1589,7 +1589,7 @@
                         info.Stats.Skills[(int)SkillType.Society] !=
                         ProficientyType.Untrained;
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
                 new FeatBase()
                 {
@@ -1602,7 +1602,7 @@
                         info.Stats.Skills[(int)SkillType.Society] ==
                         ProficientyType.Legend;
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
                 new FeatBase()
                 {
@@ -1616,7 +1616,7 @@
                         ProficientyType.Legend &&
                         info.FeatNames.Contains("Multilingual");
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
 
                 #endregion
@@ -1634,7 +1634,7 @@
                         info.Stats.Skills[(int)SkillType.Stealth] !=
                         ProficientyType.Untrained;
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
                 new FeatBase()
                 {
@@ -1647,7 +1647,7 @@
                         info.Stats.Skills[(int)SkillType.Stealth] !=
                         ProficientyType.Untrained;
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
                 new FeatBase()
                 {
@@ -1662,7 +1662,7 @@
                         info.Stats.Skills[(int)SkillType.Stealth] !=
                         ProficientyType.Trained;
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
                 new FeatBase()
                 {
@@ -1677,7 +1677,7 @@
                         info.Stats.Skills[(int)SkillType.Stealth] ==
                         ProficientyType.Legend;
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
                 new FeatBase()
                 {
@@ -1692,7 +1692,7 @@
                         info.Stats.Skills[(int)SkillType.Stealth] ==
                         ProficientyType.Legend;
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
                 new FeatBase()
                 {
@@ -1706,7 +1706,7 @@
                         ProficientyType.Legend &&
                         info.FeatNames.Contains("Swift sneak");
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
 
                 #endregion
@@ -1724,7 +1724,7 @@
                         info.Stats.Skills[(int)SkillType.Survival] !=
                         ProficientyType.Untrained;
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
                 new FeatBase()
                 {
@@ -1737,7 +1737,7 @@
                         info.Stats.Skills[(int)SkillType.Survival] !=
                         ProficientyType.Untrained;
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
                 new FeatBase()
                 {
@@ -1750,7 +1750,7 @@
                         info.Stats.Skills[(int)SkillType.Survival] !=
                         ProficientyType.Untrained;
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
                 new FeatBase()
                 {
@@ -1763,7 +1763,7 @@
                         info.Stats.Skills[(int)SkillType.Survival] !=
                         ProficientyType.Untrained;
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
                 new FeatBase()
                 {
@@ -1778,7 +1778,7 @@
                         info.Stats.Skills[(int)SkillType.Survival] ==
                         ProficientyType.Legend;
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
                 new FeatBase()
                 {
@@ -1791,7 +1791,7 @@
                         info.Stats.Skills[(int)SkillType.Survival] ==
                         ProficientyType.Legend;
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
 
                 #endregion
@@ -1809,7 +1809,7 @@
                         info.Stats.Skills[(int)SkillType.Thievery] !=
                         ProficientyType.Untrained;
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
                 new FeatBase()
                 {
@@ -1822,7 +1822,7 @@
                         info.Stats.Skills[(int)SkillType.Thievery] !=
                         ProficientyType.Untrained;
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
                 new FeatBase()
                 {
@@ -1837,7 +1837,7 @@
                         info.Stats.Skills[(int)SkillType.Thievery] !=
                         ProficientyType.Trained;
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
                 new FeatBase()
                 {
@@ -1852,7 +1852,7 @@
                         info.Stats.Skills[(int)SkillType.Thievery] ==
                         ProficientyType.Legend;
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
                 new FeatBase()
                 {
@@ -1865,7 +1865,7 @@
                         info.Stats.Skills[(int)SkillType.Thievery] ==
                         ProficientyType.Legend;
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
 
                 #endregion
@@ -1885,7 +1885,7 @@
                     {
                         return info.General.Haritage == HaritageType.AncientBloodedDwarf;
                     },
-                    Assign = (info, creationInfo) => 
+                    Assign = (info) => 
                     {
                         info.ActionNames.Add("Call on ancient blood");
                     },
@@ -1899,7 +1899,7 @@
                     {
                         return info.General.Haritage == HaritageType.DeathWardenDwarf;
                     },
-                    Assign = (info, creationInfo) => {},
+                    Assign = (info) => {},
                 },
                 new FeatBase()
                 {
@@ -1907,7 +1907,7 @@
                     Type = FeatType.Ancestory,
                     Level = 1,
                     CanAssign = (info) => { return info.General.Ancestry == AncestryType.Dwarf; },
-                    Assign = (info, creationInfo) =>
+                    Assign = (info) =>
                     {
                         if(info.Stats.Skills[(int)SkillType.Crafting] == ProficientyType.Untrained)
                         {
@@ -1915,7 +1915,7 @@
                         }
                         else
                         {
-                            creationInfo.SkillsCount++;
+                            info.CreationInfo.SkillsCount++;
                         }
                         if(info.Stats.Skills[(int)SkillType.Religion] == ProficientyType.Untrained)
                         {
@@ -1923,7 +1923,7 @@
                         }
                         else
                         {
-                            creationInfo.SkillsCount++;
+                            info.CreationInfo.SkillsCount++;
                         }
                     }
                 },
@@ -1933,7 +1933,7 @@
                     Type = FeatType.Ancestory,
                     Level = 1,
                     CanAssign = (info) => { return info.General.Ancestry == AncestryType.Dwarf; },
-                    Assign = (info, creationInfo) => {},
+                    Assign = (info) => {},
                 },
                 new FeatBase()
                 {
@@ -1941,7 +1941,7 @@
                     Type = FeatType.Ancestory,
                     Level = 1,
                     CanAssign = (info) => { return info.General.Ancestry == AncestryType.Dwarf; },
-                    Assign = (info, creationInfo) => {},
+                    Assign = (info) => {},
                 },
                 new FeatBase()
                 {
@@ -1949,7 +1949,7 @@
                     Type = FeatType.Ancestory,
                     Level = 1,
                     CanAssign = (info) => { return info.General.Ancestry == AncestryType.Dwarf; },
-                    Assign = (info, creationInfo) => {},
+                    Assign = (info) => {},
                 },
                 new FeatBase()
                 {
@@ -1957,7 +1957,7 @@
                     Type = FeatType.Ancestory,
                     Level = 1,
                     CanAssign = (info) => { return info.General.Ancestry == AncestryType.Dwarf; },
-                    Assign = (info, creationInfo) => {},
+                    Assign = (info) => {},
                 },
                 new FeatBase()
                 {
@@ -1965,7 +1965,7 @@
                     Type = FeatType.Ancestory,
                     Level = 1,
                     CanAssign = (info) => { return info.General.Ancestry == AncestryType.Dwarf; },
-                    Assign = (info, creationInfo) => {},
+                    Assign = (info) => {},
                 },
 
                 #endregion
@@ -1981,7 +1981,7 @@
                     {
                         return info.General.Haritage == HaritageType.UnbreakableGoblin;
                     },
-                    Assign = (info, creationInfo) =>
+                    Assign = (info) =>
                     {
                         info.Stats.CurrentHealthPoints +=4;
                         info.Stats.MaxHealthPoints +=4;
@@ -1996,7 +1996,7 @@
                     {
                         return info.General.Haritage == HaritageType.RazortoothGoblin;
                     },
-                    Assign = (info, creationInfo) =>
+                    Assign = (info) =>
                     {
                         // TODO Атака зубами.
                     },
@@ -2007,7 +2007,7 @@
                     Type = FeatType.Ancestory,
                     Level = 1,
                     CanAssign = (info) => { return info.General.Ancestry == AncestryType.Goblin; },
-                    Assign = (info, creationInfo) => {},
+                    Assign = (info) => {},
                 },
                 new FeatBase()
                 {
@@ -2015,7 +2015,7 @@
                     Type = FeatType.Ancestory,
                     Level = 1,
                     CanAssign = (info) => { return info.General.Ancestry == AncestryType.Goblin; },
-                    Assign = (info, creationInfo) => {},
+                    Assign = (info) => {},
                 },
                 new FeatBase()
                 {
@@ -2023,7 +2023,7 @@
                     Type = FeatType.Ancestory,
                     Level = 1,
                     CanAssign = (info) => { return info.General.Ancestry == AncestryType.Goblin; },
-                    Assign = (info, creationInfo) =>
+                    Assign = (info) =>
                     {
                         if(info.Stats.Skills[(int)SkillType.Nature] == ProficientyType.Untrained)
                         {
@@ -2031,7 +2031,7 @@
                         }
                         else
                         {
-                            creationInfo.SkillsCount++;
+                            info.CreationInfo.SkillsCount++;
                         }
                         if(info.Stats.Skills[(int)SkillType.Stealth] == ProficientyType.Untrained)
                         {
@@ -2039,7 +2039,7 @@
                         }
                         else
                         {
-                            creationInfo.SkillsCount++;
+                            info.CreationInfo.SkillsCount++;
                         }
                     },
                 },
@@ -2057,7 +2057,7 @@
                     {
                         return info.General.Haritage == HaritageType.CavernElf;
                     },
-                    Assign = (info, creationInfo) =>
+                    Assign = (info) =>
                     {
                         info.FeatNames.Add("Night vision");
                     },
@@ -2071,7 +2071,7 @@
                     {
                         return info.General.Haritage == HaritageType.WoodlandElf;
                     },
-                    Assign = (info, creationInfo) => { },
+                    Assign = (info) => { },
                 },
                 new FeatBase()
                 {
@@ -2079,7 +2079,7 @@
                     Type = FeatType.Ancestory,
                     Level = 1,
                     CanAssign = (info) => { return info.General.Ancestry == AncestryType.Elf; },
-                    Assign = (info, creationInfo) =>
+                    Assign = (info) =>
                     {
                         if(info.Stats.Skills[(int)SkillType.Arcana] == ProficientyType.Untrained)
                         {
@@ -2087,7 +2087,7 @@
                         }
                         else
                         {
-                            creationInfo.SkillsCount++;
+                            info.CreationInfo.SkillsCount++;
                         }
                         if(info.Stats.Skills[(int)SkillType.Nature] == ProficientyType.Untrained)
                         {
@@ -2095,7 +2095,7 @@
                         }
                         else
                         {
-                            creationInfo.SkillsCount++;
+                            info.CreationInfo.SkillsCount++;
                         }
                     },
                 },
@@ -2105,7 +2105,7 @@
                     Type = FeatType.Ancestory,
                     Level = 1,
                     CanAssign = (info) => { return info.General.Ancestry == AncestryType.Elf; },
-                    Assign = (info, creationInfo) => {},
+                    Assign = (info) => {},
                 },
                 new FeatBase()
                 {
@@ -2113,7 +2113,7 @@
                     Type = FeatType.Ancestory,
                     Level = 1,
                     CanAssign = (info) => { return info.General.Ancestry == AncestryType.Elf; },
-                    Assign = (info, creationInfo) => { info.Stats.Speed += 5; },
+                    Assign = (info) => { info.Stats.Speed += 5; },
                 },
                 new FeatBase()
                 {
@@ -2121,7 +2121,7 @@
                     Type = FeatType.Ancestory,
                     Level = 1,
                     CanAssign = (info) => { return info.General.Ancestry == AncestryType.Elf; },
-                    Assign = (info, creationInfo) => {},
+                    Assign = (info) => {},
                 },
 
                 #endregion
@@ -2143,7 +2143,7 @@
                                 {
                                     return info.General.ClassName == ClassType.Fighter;
                                 },
-                                Assign = (info, creationInfo) =>
+                                Assign = (info) =>
                                 {
                                     // TODO
                                     // info.Actions.Add(new Action()
@@ -2162,7 +2162,7 @@
                                 {
                                     return info.General.ClassName == ClassType.Fighter;
                                 },
-                                Assign = (info, creationInfo) =>
+                                Assign = (info) =>
                                 {
                                     // TODO
                                     // info.Actions.Add(new Action()
@@ -2185,7 +2185,7 @@
                                 {
                                     return info.General.ClassName == ClassType.Fighter;
                                 },
-                                Assign = (info, creationInfo) =>
+                                Assign = (info) =>
                                 {
                                     // TODO
                                     // info.Actions.Add(new Action()
@@ -2209,7 +2209,7 @@
                                 {
                                     return info.General.ClassName == ClassType.Fighter;
                                 },
-                                Assign = (info, creationInfo) =>
+                                Assign = (info) =>
                                 {
                                     // TODO
                                     // info.Actions.Add(new Action()
@@ -2232,7 +2232,7 @@
                                 {
                                     return info.General.ClassName == ClassType.Fighter;
                                 },
-                                Assign = (info, creationInfo) =>
+                                Assign = (info) =>
                                 {
                                     // TODO
                                     // info.Actions.Add(new Action()
@@ -2252,7 +2252,7 @@
                                 {
                                     return info.General.ClassName == ClassType.Fighter;
                                 },
-                                Assign = (info, creationInfo) =>
+                                Assign = (info) =>
                                 {
                                     // TODO
                                     // info.Actions.Add(new Action()
@@ -2272,7 +2272,7 @@
                                 {
                                     return info.General.ClassName == ClassType.Fighter;
                                 },
-                                Assign = (info, creationInfo) =>
+                                Assign = (info) =>
                                 {
                                     // TODO
                                     // info.Actions.Add(new Action()
@@ -2296,7 +2296,7 @@
                                 {
                                     return info.General.ClassName == ClassType.Fighter;
                                 },
-                                Assign = (info, creationInfo) =>
+                                Assign = (info) =>
                                 {
                                     // TODO
                                     // info.Actions.Add(new Action()

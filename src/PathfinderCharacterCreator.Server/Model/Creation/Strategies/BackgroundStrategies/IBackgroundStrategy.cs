@@ -11,6 +11,6 @@
         /// Метод задаёт значения предыстории в создаваемого персонажа.
         /// </summary>
         /// <param name="character">Изменяемый персонаж.</param>
-        public void SetBackgroundInfo(DBCharacter character, CreationInfo info);
+        public void SetBackgroundInfo(DBCharacter character);
     }
 }

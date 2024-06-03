@@ -55,6 +55,12 @@
         public DBStats Stats { get; set; }
 
         /// <summary>
+        /// Информация о персонаже во время создания.
+        /// </summary>
+        [Required]
+        public DBCreationInfo CreationInfo { get; set; }
+
+        /// <summary>
         /// Кошелёк персонажа.
         /// </summary>
         [Required]

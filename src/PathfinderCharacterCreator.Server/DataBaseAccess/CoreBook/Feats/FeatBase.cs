@@ -37,7 +37,7 @@
         /// Делегат, содержащий логику черты.
         /// </summary>
         /// <param name="characterInfo">Информация о персонаже для изменения.</param>
-        public delegate void AssignDelegate(DBCharacter characterInfo, CreationInfo creationInfo);
+        public delegate void AssignDelegate(DBCharacter characterInfo);
 
         /// <summary>
         /// Переменная делегата CanBeAssignDeleagte

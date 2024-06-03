@@ -1,6 +1,5 @@
 ﻿namespace Model.Creation.Strategies
 {
-    using DataBaseAccess.Character;
     using DataBaseAccess.CoreBook.Types;
     using Model.Editor;
     using Model.LevelManager;
@@ -14,7 +13,7 @@
         /// Метод задаёт значения класса алхимика в создаваемого персонажа.
         /// </summary>
         /// <param name="character">Изменяемый персонаж.</param>
-        public void SetClassInfo(Character character, CreationInfo info)
+        public void SetClassInfo(Character character)
         {
             var service = new CreationGeneralInfoService();
 
@@ -47,7 +46,7 @@
                                         ProficientyType.Trained,
                                         ProficientyType.Untrained);
 
-            info.SkillsCount += 3;
+            character.Info.CreationInfo.SkillsCount += 2;
 
             character.Info.ItemNames.AddRange(new List<string>
                                 {
