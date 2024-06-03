@@ -1,5 +1,6 @@
 ﻿namespace Model.Creation.Strategies
 {
+    using DataBaseAccess.Character;
     using DataBaseAccess.CoreBook.Types;
     using Model.Editor;
     using Model.LevelManager;
@@ -13,43 +14,39 @@
         /// Метод задаёт значения класса чемпиона в создаваемого персонажа.
         /// </summary>
         /// <param name="character">Изменяемый персонаж.</param>
-        public void SetClassInfo(Character character)
+        public void SetClassInfo(DBCharacter character)
         {
             var service = new CreationGeneralInfoService();
 
-            character.LevelManager = new ChampionLevelManager();
+            character.General.ClassName = ClassType.Champion;
 
-            character.Editor = new ChampionEditor();
+            character.CreationInfo.ClassOptionAbility = [AbilityType.Strength, AbilityType.Dexterity];
 
-            character.Info.General.ClassName = ClassType.Champion;
-
-            character.Info.CreationInfo.ClassOptionAbility = [AbilityType.Strength, AbilityType.Dexterity];
-
-            character.Info.Stats.Skills[(int)SkillType.Perception]
+            character.Stats.Skills[(int)SkillType.Perception]
                 = ProficientyType.Trained;
 
-            service.SetHealthPoints(character.Info, 10);
+            service.SetHealthPoints(character, 10);
 
-            service.SetSavingThrows(character.Info,
+            service.SetSavingThrows(character,
                                     ProficientyType.Expert,
                                     ProficientyType.Trained,
                                     ProficientyType.Expert);
 
-            service.SetWeaponProficienty(character.Info,
+            service.SetWeaponProficienty(character,
                                         ProficientyType.Trained,
                                         ProficientyType.Trained,
                                         ProficientyType.Trained,
                                         ProficientyType.Untrained);
 
-            service.SetArmorProficienty(character.Info,
+            service.SetArmorProficienty(character,
                                         ProficientyType.Trained,
                                         ProficientyType.Trained,
                                         ProficientyType.Trained,
                                         ProficientyType.Trained);
 
-            character.Info.CreationInfo.SkillsCount += 2;
+            character.CreationInfo.SkillsCount += 2;
 
-            character.Info.ItemNames.AddRange(new List<string>
+            character.ItemNames.AddRange(new List<string>
                                 {
                                     "Hide",
                                     "Dagger",

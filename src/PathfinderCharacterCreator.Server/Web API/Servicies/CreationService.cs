@@ -23,7 +23,7 @@
         /// <summary>
         /// Создаваемый персонаж.
         /// </summary>
-        private Character _character;
+        private DBCharacter _character;
 
         /// <summary>
         /// Конструктор класса.
@@ -33,7 +33,7 @@
         {
             _db = db;
             _factory = new CharacterFactory();
-            _character = new Character();
+            _character = new DBCharacter();
         }
 
         /// <summary>
@@ -50,7 +50,7 @@
                                         .Find(c => c.ID == characterID);
             if(character != null)
             {
-                _character.Info = character;
+                _character = character;
             }
         }
 
@@ -106,7 +106,7 @@
             {
                 abilities[ability] = abilitiesView.Abilities[(int)ability];
             }
-            _factory.SetAbilities(_character.Info, abilities);
+            _factory.SetAbilities(_character, abilities);
 
             _db.SaveChanges();
         }
@@ -124,7 +124,7 @@
             {
                 skills[skill] = (ProficientyType)skillsView.Skills[(int)skill];
             }
-            _factory.SetSkills(_character.Info, skills);
+            _factory.SetSkills(_character, skills);
 
             _db.SaveChanges();
         }
@@ -138,7 +138,7 @@
             GetCharacter(featsView.Id);
 
             foreach (string feat in featsView.Feats)
-                _factory.SetFeat(_character.Info, feat);
+                _factory.SetFeat(_character, feat);
 
             _db.SaveChanges();
         }
