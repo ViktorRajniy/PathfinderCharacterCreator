@@ -12,7 +12,7 @@
         /// Метод задаёт значения родословной дварфа в создаваемого персонажа.
         /// </summary>
         /// <param name="character">Изменяемый персонаж.</param>
-        public void SetAncestriesInfo(DBCharacter character, HaritageType haritage, CreationInfo info)
+        public void SetAncestriesInfo(DBCharacter character)
         {
             var service = new CreationGeneralInfoService();
 
@@ -34,17 +34,17 @@
                                     "Clan Dagger"
                                 });
 
-            if (haritage == HaritageType.AncientBloodedDwarf)
+            if (character.General.Haritage == HaritageType.AncientBloodedDwarf)
             {
-                service.SetFeat(character, info, "Ancient-blooded dwarf");
+                service.SetFeat(character, "Ancient-blooded dwarf");
             }
 
-            if (haritage == HaritageType.DeathWardenDwarf)
+            if (character.General.Haritage == HaritageType.DeathWardenDwarf)
             {
-                service.SetFeat(character, info, "Death warden dwarf");
+                service.SetFeat(character, "Death warden dwarf");
             }
 
-            info.AllowAncestoryAbility =
+            character.CreationInfo.AncestoryAbility =
                 [
                 AbilityType.Strength,
                 AbilityType.Dexterity,

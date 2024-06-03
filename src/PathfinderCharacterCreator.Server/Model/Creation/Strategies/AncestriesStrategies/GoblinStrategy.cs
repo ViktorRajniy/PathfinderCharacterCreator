@@ -12,7 +12,7 @@
         /// Метод задаёт значения родословной гоблина в создаваемого персонажа.
         /// </summary>
         /// <param name="character">Изменяемый персонаж.</param>
-        public void SetAncestriesInfo(DBCharacter character, HaritageType haritage, CreationInfo info)
+        public void SetAncestriesInfo(DBCharacter character)
         {
             var service = new CreationGeneralInfoService();
 
@@ -27,19 +27,19 @@
 
             service.SetHealthPoints(character, 6);
 
-            if (haritage == HaritageType.UnbreakableGoblin)
+            if (character.General.Haritage == HaritageType.UnbreakableGoblin)
             {
-                service.SetFeat(character, info, "Unbreakable goblin");
+                service.SetFeat(character, "Unbreakable goblin");
             };
 
             character.Stats.Speed = 25;
 
-            if (haritage == HaritageType.RazortoothGoblin)
+            if (character.General.Haritage == HaritageType.RazortoothGoblin)
             {
-                service.SetFeat(character, info, "Razortooth goblin");
+                service.SetFeat(character, "Razortooth goblin");
             };
 
-            info.AllowAncestoryAbility =
+            character.CreationInfo.AncestoryAbility =
                 [
                 AbilityType.Strength,
                 AbilityType.Constitution,

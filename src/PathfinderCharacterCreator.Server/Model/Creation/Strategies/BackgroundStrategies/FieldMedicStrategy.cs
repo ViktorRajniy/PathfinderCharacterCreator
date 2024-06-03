@@ -12,7 +12,7 @@
         /// Метод задаёт значения предыстории полевого врача в создаваемого персонажа.
         /// </summary>
         /// <param name="character">Изменяемый персонаж.</param>
-        public void SetBackgroundInfo(DBCharacter character, CreationInfo info)
+        public void SetBackgroundInfo(DBCharacter character)
         {
             var service = new CreationGeneralInfoService();
 
@@ -21,10 +21,10 @@
             character.Stats.Skills[(int)SkillType.Medicine]
                 = ProficientyType.Trained;
 
-            info.AllowBackgroundAbility.Add(AbilityType.Constitution);
-            info.AllowBackgroundAbility.Add(AbilityType.Wisdom);
+            character.CreationInfo.BackgroundAbility.Add(AbilityType.Constitution);
+            character.CreationInfo.BackgroundAbility.Add(AbilityType.Wisdom);
 
-            service.SetFeat(character, info, "Battle medicine");
+            service.SetFeat(character, "Battle medicine");
         }
     }
 }

@@ -12,7 +12,7 @@
         /// Метод задаёт значения предыстории послушника в создаваемого персонажа.
         /// </summary>
         /// <param name="character">Изменяемый персонаж.</param>
-        public void SetBackgroundInfo(DBCharacter character, CreationInfo info)
+        public void SetBackgroundInfo(DBCharacter character)
         {
             var service = new CreationGeneralInfoService();
 
@@ -21,10 +21,10 @@
             character.Stats.Skills[(int)SkillType.Religion]
                 = ProficientyType.Trained;
 
-            info.AllowBackgroundAbility.Add(AbilityType.Intelligence);
-            info.AllowBackgroundAbility.Add(AbilityType.Wisdom);
+            character.CreationInfo.BackgroundAbility.Add(AbilityType.Intelligence);
+            character.CreationInfo.BackgroundAbility.Add(AbilityType.Wisdom);
 
-            service.SetFeat(character, info, "Student of the canon");
+            service.SetFeat(character, "Student of the canon");
         }
     }
 }

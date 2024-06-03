@@ -12,7 +12,7 @@
         /// Метод задаёт значения родословной эльфа в создаваемого персонажа.
         /// </summary>
         /// <param name="character">Изменяемый персонаж.</param>
-        public void SetAncestriesInfo(DBCharacter character, HaritageType haritage, CreationInfo info)
+        public void SetAncestriesInfo(DBCharacter character)
         {
             var service = new CreationGeneralInfoService();
 
@@ -29,21 +29,21 @@
 
             character.Stats.Speed = 30;
 
-            if (haritage == HaritageType.CavernElf)
+            if (character.General.Haritage == HaritageType.CavernElf)
             {
-                service.SetFeat(character, info, "Cavern elf");
+                service.SetFeat(character, "Cavern elf");
             }
             else
             {
-                service.SetFeat(character, info, "Low-light vision");
+                service.SetFeat(character, "Low-light vision");
             }
 
-            if (haritage == HaritageType.WoodlandElf)
+            if (character.General.Haritage == HaritageType.WoodlandElf)
             {
-                service.SetFeat(character, info, "Woodland elf");
+                service.SetFeat(character, "Woodland elf");
             }
 
-            info.AllowAncestoryAbility =
+            character.CreationInfo.AncestoryAbility =
                 [
                 AbilityType.Strength,
                 AbilityType.Wisdom,

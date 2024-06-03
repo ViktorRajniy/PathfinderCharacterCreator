@@ -1,7 +1,6 @@
 ﻿namespace Model.Creation.Strategies
 {
     using DataBaseAccess.Character;
-    using DataBaseAccess.CoreBook.Types;
 
     /// <summary>
     /// Интерфейс стратегии родословной.
@@ -12,6 +11,6 @@
         /// Метод задаёт значения родословной в создаваемого персонажа.
         /// </summary>
         /// <param name="character">Изменяемый персонаж.</param>
-        public void SetAncestriesInfo(DBCharacter character, HaritageType haritage, CreationInfo info);
+        public void SetAncestriesInfo(DBCharacter character);
     }
 }
