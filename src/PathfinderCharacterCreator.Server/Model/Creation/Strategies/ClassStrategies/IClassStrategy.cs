@@ -12,6 +12,6 @@
         /// Метод задаёт значения класса в создаваемого персонажа.
         /// </summary>
         /// <param name="character">Изменяемый персонаж.</param>
-        public void SetClassInfo(Character character);
+        public void SetClassInfo(DBCharacter character);
     }
 }
