@@ -1,5 +1,6 @@
 ﻿namespace Model.Creation.Strategies
 {
+    using DataBaseAccess.Character;
     using DataBaseAccess.CoreBook.Types;
     using Model.Editor;
     using Model.LevelManager;
@@ -10,43 +11,39 @@
         /// Метод задаёт значения класса воина в создаваемого персонажа.
         /// </summary>
         /// <param name="character">Изменяемый персонаж.</param>
-        public void SetClassInfo(Character character)
+        public void SetClassInfo(DBCharacter character)
         {
             var service = new CreationGeneralInfoService();
 
-            character.LevelManager = new WizzardLevelManager();
+            character.General.ClassName = ClassType.Wizzard;
 
-            character.Editor = new WizzardEditor();
+            character.Stats.Abilities[(int)AbilityType.Intelligence] += 2;
 
-            character.Info.General.ClassName = ClassType.Wizzard;
-
-            character.Info.Stats.Abilities[(int)AbilityType.Intelligence] += 2;
-
-            character.Info.Stats.Skills[(int)SkillType.Perception]
+            character.Stats.Skills[(int)SkillType.Perception]
                 = ProficientyType.Trained;
 
-            service.SetHealthPoints(character.Info, 6);
+            service.SetHealthPoints(character, 6);
 
-            service.SetSavingThrows(character.Info,
+            service.SetSavingThrows(character,
                                     ProficientyType.Trained,
                                     ProficientyType.Trained,
                                     ProficientyType.Expert);
 
-            service.SetWeaponProficienty(character.Info,
+            service.SetWeaponProficienty(character,
                                         ProficientyType.Trained,
                                         ProficientyType.Trained,
                                         ProficientyType.Untrained,
                                         ProficientyType.Untrained);
 
-            service.SetArmorProficienty(character.Info,
+            service.SetArmorProficienty(character,
                                         ProficientyType.Trained,
                                         ProficientyType.Untrained,
                                         ProficientyType.Untrained,
                                         ProficientyType.Untrained);
 
-            character.Info.CreationInfo.SkillsCount += 2;
+            character.CreationInfo.SkillsCount += 2;
 
-            character.Info.ItemNames.AddRange(new List<string>
+            character.ItemNames.AddRange(new List<string>
                                 {
                                     "Staff",
                                     "Writting set",

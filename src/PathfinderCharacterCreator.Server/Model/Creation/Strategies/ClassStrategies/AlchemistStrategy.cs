@@ -1,5 +1,6 @@
 ﻿namespace Model.Creation.Strategies
 {
+    using DataBaseAccess.Character;
     using DataBaseAccess.CoreBook.Types;
     using Model.Editor;
     using Model.LevelManager;
@@ -13,42 +14,38 @@
         /// Метод задаёт значения класса алхимика в создаваемого персонажа.
         /// </summary>
         /// <param name="character">Изменяемый персонаж.</param>
-        public void SetClassInfo(Character character)
+        public void SetClassInfo(DBCharacter character)
         {
             var service = new CreationGeneralInfoService();
 
-            character.LevelManager = new AlchemistLevelManager();
+            character.General.ClassName = ClassType.Alchemist;
 
-            character.Editor = new AlchemistEditor();
+            character.Stats.Abilities[(int)AbilityType.Intelligence] += 2;
 
-            character.Info.General.ClassName = ClassType.Alchemist;
+            character.Stats.Skills[(int)SkillType.Perception] = ProficientyType.Trained;
 
-            character.Info.Stats.Abilities[(int)AbilityType.Intelligence] += 2;
+            service.SetHealthPoints(character, 8);
 
-            character.Info.Stats.Skills[(int)SkillType.Perception] = ProficientyType.Trained;
-
-            service.SetHealthPoints(character.Info, 8);
-
-            service.SetSavingThrows(character.Info,
+            service.SetSavingThrows(character,
                                     ProficientyType.Expert,
                                     ProficientyType.Expert,
                                     ProficientyType.Trained);
 
-            service.SetWeaponProficienty(character.Info,
+            service.SetWeaponProficienty(character,
                                         ProficientyType.Trained,
                                         ProficientyType.Trained,
                                         ProficientyType.Untrained,
                                         ProficientyType.Untrained);
 
-            service.SetArmorProficienty(character.Info,
+            service.SetArmorProficienty(character,
                                         ProficientyType.Trained,
                                         ProficientyType.Trained,
                                         ProficientyType.Trained,
                                         ProficientyType.Untrained);
 
-            character.Info.CreationInfo.SkillsCount += 2;
+            character.CreationInfo.SkillsCount += 2;
 
-            character.Info.ItemNames.AddRange(new List<string>
+            character.ItemNames.AddRange(new List<string>
                                 {
                                     "Studded Leather",
                                     "Dagger",

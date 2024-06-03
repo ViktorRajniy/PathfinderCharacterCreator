@@ -28,19 +28,19 @@
         /// в поля персонажа.
         /// </summary>
         /// <param name="info">Общие параметры персонажа.</param>
-        public void SetGeneralParameters(Character character, DBGeneralInfo info, string Name)
+        public void SetGeneralParameters(DBCharacter character, DBGeneralInfo info, string Name)
         {
             var strategies = new Strategies.Strategies();
 
-            character.Info.Name = Name;
-            character.Info.General.Deity = info.Deity;
-            character.Info.General.Aligment = info.Aligment;
+            character.Name = Name;
+            character.General.Deity = info.Deity;
+            character.General.Aligment = info.Aligment;
 
-            character.Info.Wallet = 1500;
+            character.Wallet = 1500;
 
             strategies.Class[info.ClassName].SetClassInfo(character);
-            strategies.Ancestory[info.Ancestry].SetAncestriesInfo(character.Info);
-            strategies.Background[info.Background].SetBackgroundInfo(character.Info);
+            strategies.Ancestory[info.Ancestry].SetAncestriesInfo(character);
+            strategies.Background[info.Background].SetBackgroundInfo(character);
         }
 
         /// <summary>
@@ -78,9 +78,7 @@
         public void SetFeat(DBCharacter character, string featName)
         {
             var featManager = new FeatManager();
-
             var feat = featManager.FindFeat(featName);
-
             if (feat != null && feat.CanAssign(character))
             {
                 feat.Assign(character);
