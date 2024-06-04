@@ -38,6 +38,9 @@
 
             character.Wallet = 1500;
 
+            character.General.Haritage = info.Haritage;
+            character.General.SubClass = info.SubClass;
+
             strategies.Class[info.ClassName].SetClassInfo(character);
             strategies.Ancestory[info.Ancestry].SetAncestriesInfo(character);
             strategies.Background[info.Background].SetBackgroundInfo(character);
