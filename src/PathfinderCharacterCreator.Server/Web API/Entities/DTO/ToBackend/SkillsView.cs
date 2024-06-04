@@ -1,4 +1,4 @@
-﻿namespace Web_API.Entities
+﻿namespace Web_API.Entities.DTO
 {
     /// <summary>
     /// Значение навыков, приходящее со View.
