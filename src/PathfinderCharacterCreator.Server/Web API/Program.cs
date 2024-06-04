@@ -19,6 +19,7 @@ builder.Services.AddDbContext<ApplicationContext>(optionsBuilder =>
 // Добавление сервисов.
 builder.Services.AddScoped<CreationService>();
 builder.Services.AddScoped<DataAccessService>();
+builder.Services.AddScoped<BrowseService>();
 builder.Services.AddScoped<UserService>();
 
 var app = builder.Build();

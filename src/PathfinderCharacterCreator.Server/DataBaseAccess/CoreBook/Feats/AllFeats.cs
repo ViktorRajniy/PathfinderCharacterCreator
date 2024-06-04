@@ -180,238 +180,233 @@
 
                 #region Level1
 
-                            new FeatBase()
-                            {
-                                Name = "Armor proficiency",
-                                Type = FeatType.General,
-                                Level = 1,
-                                CanAssign = (info) => { return true; },
-                                Assign = (info) =>
-                                {
-                                    bool lightUnrained =
-                                    info.Stats.ArmorProficienty[(int)ArmorType.Light]
-                                    == ProficientyType.Untrained;
+                new FeatBase()
+                {
+                    Name = "Armor proficiency",
+                    Type = FeatType.General,
+                    Level = 1,
+                    CanAssign = (info) => { return true; },
+                    Assign = (info) =>
+                    {
+                        bool lightUnrained =
+                        info.Stats.ArmorProficienty[(int)ArmorType.Light]
+                        == ProficientyType.Untrained;
 
-                                    bool mediumUnrained =
-                                    info.Stats.ArmorProficienty[(int)ArmorType.Medium]
-                                    == ProficientyType.Untrained;
+                        bool mediumUnrained =
+                        info.Stats.ArmorProficienty[(int)ArmorType.Medium]
+                        == ProficientyType.Untrained;
 
-                                    bool heavyUnrained =
-                                    info.Stats.ArmorProficienty[(int)ArmorType.Heavy]
-                                    == ProficientyType.Untrained;
+                        bool heavyUnrained =
+                        info.Stats.ArmorProficienty[(int)ArmorType.Heavy]
+                        == ProficientyType.Untrained;
 
-                                    if(lightUnrained)
-                                    {
-                                        info.Stats.ArmorProficienty[(int)ArmorType.Light]
-                                        = ProficientyType.Trained;
-                                        return;
-                                    }
-                                    if(mediumUnrained)
-                                    {
-                                        info.Stats.ArmorProficienty[(int)ArmorType.Medium]
-                                        = ProficientyType.Trained;
-                                        return;
-                                    }
-                                    if(heavyUnrained)
-                                    {
-                                        info.Stats.ArmorProficienty[(int)ArmorType.Heavy]
-                                        = ProficientyType.Trained;
-                                        return;
-                                    }
-                                },
-                            },
-                            new FeatBase()
-                            {
-                                Name = "Breath control",
-                                Type = FeatType.General,
-                                Level = 1,
-                                CanAssign = (info) => { return true; },
-                                Assign = (info) => {},
-                            },
-                            new FeatBase()
-                            {
-                                Name = "Canny acumen - Perception",
-                                Type = FeatType.General,
-                                Level = 1,
-                                CanAssign = (info) =>
-                                {
-                                    return
-                                    info.Stats.Skills[(int)SkillType.Perception]
-                                    == ProficientyType.Trained;
-                                },
-                                Assign = (info) =>
-                                {
-                                    info.Stats.Skills[(int)SkillType.Perception]
-                                    = ProficientyType.Expert;
-                                },
-                            },
-                            new FeatBase()
-                            {
-                                Name = "Canny acumen - Fortitude",
-                                Type = FeatType.General,
-                                Level = 1,
-                                CanAssign = (info) =>
-                                {
-                                    return
-                                    info.Stats.SavingThrows[(int)SavingThrowType.Fortitude]
-                                    == ProficientyType.Trained;
-                                },
-                                Assign = (info) =>
-                                {
-                                    info.Stats.SavingThrows[(int)SavingThrowType.Fortitude]
-                                    = ProficientyType.Expert;
-                                },
-                            },
-                            new FeatBase()
-                            {
-                                Name = "Canny acumen - Reflex",
-                                Type = FeatType.General,
-                                Level = 1,
-                                CanAssign = (info) =>
-                                {
-                                    return
-                                    info.Stats.SavingThrows[(int)SavingThrowType.Reflex]
-                                    == ProficientyType.Trained;
-                                },
-                                Assign = (info) =>
-                                {
-                                    info.Stats.SavingThrows[(int)SavingThrowType.Reflex]
-                                    = ProficientyType.Expert;
-                                },
-                            },
-                            new FeatBase()
-                            {
-                                Name = "Canny acumen - Will",
-                                Type = FeatType.General,
-                                Level = 1,
-                                CanAssign = (info) =>
-                                {
-                                    return
-                                    info.Stats.SavingThrows[(int)SavingThrowType.Will]
-                                    == ProficientyType.Trained;
-                                },
-                                Assign = (info) =>
-                                {
-                                    info.Stats.SavingThrows[(int)SavingThrowType.Will]
-                                    = ProficientyType.Expert;
-                                },
-                            },
-                            new FeatBase()
-                            {
-                                Name = "Diehard",
-                                Type = FeatType.General,
-                                Level = 1,
-                                CanAssign = (info) => { return true; },
-                                Assign = (info) => {},
-                            },
-                            new FeatBase()
-                            {
-                                Name = "Feather step",
-                                Type = FeatType.General,
-                                Level = 1,
-                                CanAssign = (info) => { return info.Stats.Abilities[(int)AbilityType.Dexterity] >= 14; },
-                                Assign = (info) => {},
-                            },
-                            new FeatBase()
-                            {
-                                Name = "Fast recovery",
-                                Type = FeatType.General,
-                                Level = 1,
-                                CanAssign = (info) => { return info.Stats.Abilities[(int)AbilityType.Constitution] >= 14; },
-                                Assign = (info) => {},
-                            },
-                            new FeatBase()
-                            {
-                                Name = "Fleet",
-                                Type = FeatType.General,
-                                Level = 1,
-                                CanAssign = (info) =>
-                                {
-                                    return
-                                    info.Stats.Abilities[(int)AbilityType.Dexterity] >= 14;
-                                },
-                                Assign = (info) =>
-                                {
-                                    info.Stats.Speed += 5;
-                                },
-                            },
-                            new FeatBase()
-                            {
-                                Name = "Incredeble initiative",
-                                Type = FeatType.General,
-                                Level = 1,
-                                CanAssign = (info) => {return true; },
-                                Assign = (info) => {}
-                            },
-                            new FeatBase()
-                            {
-                                Name = "Shield block",
-                                Type = FeatType.General,
-                                Level = 1,
-                                CanAssign = (info) => {return true; },
-                                Assign = (info) =>
-                                {
-                                    // TODO
-                                    // info.Actions.Add(new DBAction()
-                                    // {
-                                         //Name = "Shield block",
-                                         //Type = ActionType.Reaction
-                                    // });
-                                }
-                            },
-                            new FeatBase()
-                            {
-                                Name = "Toughness",
-                                Type = FeatType.General,
-                                Level = 1,
-                                CanAssign = (info) => {return true; },
-                                Assign = (info) =>
-                                {
-                                    info.Stats.MaxHealthPoints += info.Level;
-                                }
-                            },
-                            new FeatBase()
-                            {
-                                Name = "Weapon proficiency",
-                                Type = FeatType.General,
-                                Level = 1,
-                                CanAssign = (info) => { return true; },
-                                Assign = (info) =>
-                                {
-                                    bool simpleUnrained =
-                                    info.Stats.WeaponProficienty[(int)WeaponType.Simple]
-                                    == ProficientyType.Untrained;
+                        if(lightUnrained)
+                        {
+                            info.Stats.ArmorProficienty[(int)ArmorType.Light]
+                            = ProficientyType.Trained;
+                            return;
+                        }
+                        if(mediumUnrained)
+                        {
+                            info.Stats.ArmorProficienty[(int)ArmorType.Medium]
+                            = ProficientyType.Trained;
+                            return;
+                        }
+                        if(heavyUnrained)
+                        {
+                            info.Stats.ArmorProficienty[(int)ArmorType.Heavy]
+                            = ProficientyType.Trained;
+                            return;
+                        }
+                    },
+                },
+                new FeatBase()
+                {
+                    Name = "Breath control",
+                    Type = FeatType.General,
+                    Level = 1,
+                    CanAssign = (info) => { return true; },
+                    Assign = (info) => {},
+                },
+                new FeatBase()
+                {
+                    Name = "Canny acumen - Perception",
+                    Type = FeatType.General,
+                    Level = 1,
+                    CanAssign = (info) =>
+                    {
+                        return
+                        info.Stats.Skills[(int)SkillType.Perception]
+                        == ProficientyType.Trained;
+                    },
+                    Assign = (info) =>
+                    {
+                        info.Stats.Skills[(int)SkillType.Perception]
+                        = ProficientyType.Expert;
+                    },
+                },
+                new FeatBase()
+                {
+                    Name = "Canny acumen - Fortitude",
+                    Type = FeatType.General,
+                    Level = 1,
+                    CanAssign = (info) =>
+                    {
+                        return
+                        info.Stats.SavingThrows[(int)SavingThrowType.Fortitude]
+                        == ProficientyType.Trained;
+                    },
+                    Assign = (info) =>
+                    {
+                        info.Stats.SavingThrows[(int)SavingThrowType.Fortitude]
+                        = ProficientyType.Expert;
+                    },
+                },
+                new FeatBase()
+                {
+                    Name = "Canny acumen - Reflex",
+                    Type = FeatType.General,
+                    Level = 1,
+                    CanAssign = (info) =>
+                    {
+                        return
+                        info.Stats.SavingThrows[(int)SavingThrowType.Reflex]
+                        == ProficientyType.Trained;
+                    },
+                    Assign = (info) =>
+                    {
+                        info.Stats.SavingThrows[(int)SavingThrowType.Reflex]
+                        = ProficientyType.Expert;
+                    },
+                },
+                new FeatBase()
+                {
+                    Name = "Canny acumen - Will",
+                    Type = FeatType.General,
+                    Level = 1,
+                    CanAssign = (info) =>
+                    {
+                        return
+                        info.Stats.SavingThrows[(int)SavingThrowType.Will]
+                        == ProficientyType.Trained;
+                    },
+                    Assign = (info) =>
+                    {
+                        info.Stats.SavingThrows[(int)SavingThrowType.Will]
+                        = ProficientyType.Expert;
+                    },
+                },
+                new FeatBase()
+                {
+                    Name = "Diehard",
+                    Type = FeatType.General,
+                    Level = 1,
+                    CanAssign = (info) => { return true; },
+                    Assign = (info) => {},
+                },
+                new FeatBase()
+                {
+                    Name = "Feather step",
+                    Type = FeatType.General,
+                    Level = 1,
+                    CanAssign = (info) => { return info.Stats.Abilities[(int)AbilityType.Dexterity] >= 14; },
+                    Assign = (info) => {},
+                },
+                new FeatBase()
+                {
+                    Name = "Fast recovery",
+                    Type = FeatType.General,
+                    Level = 1,
+                    CanAssign = (info) => { return info.Stats.Abilities[(int)AbilityType.Constitution] >= 14; },
+                    Assign = (info) => {},
+                },
+                new FeatBase()
+                {
+                    Name = "Fleet",
+                    Type = FeatType.General,
+                    Level = 1,
+                    CanAssign = (info) =>
+                    {
+                        return
+                        info.Stats.Abilities[(int)AbilityType.Dexterity] >= 14;
+                    },
+                    Assign = (info) =>
+                    {
+                        info.Stats.Speed += 5;
+                    },
+                },
+                new FeatBase()
+                {
+                    Name = "Incredeble initiative",
+                    Type = FeatType.General,
+                    Level = 1,
+                    CanAssign = (info) => {return true; },
+                    Assign = (info) => {}
+                },
+                new FeatBase()
+                {
+                    Name = "Shield block",
+                    Type = FeatType.General,
+                    Level = 1,
+                    CanAssign = (info) => {return true; },
+                    Assign = (info) =>
+                    {
+                        info.ActionNames.Add("Shield block");
+                    }
+                },
+                new FeatBase()
+                {
+                    Name = "Toughness",
+                    Type = FeatType.General,
+                    Level = 1,
+                    CanAssign = (info) => {return true; },
+                    Assign = (info) =>
+                    {
+                        info.Stats.MaxHealthPoints += info.Level;
+                    }
+                },
+                new FeatBase()
+                {
+                    Name = "Weapon proficiency",
+                    Type = FeatType.General,
+                    Level = 1,
+                    CanAssign = (info) => { return true; },
+                    Assign = (info) =>
+                    {
+                        bool simpleUnrained =
+                        info.Stats.WeaponProficienty[(int)WeaponType.Simple]
+                        == ProficientyType.Untrained;
 
-                                    bool martialUnrained =
-                                    info.Stats.WeaponProficienty[(int)WeaponType.Martial]
-                                    == ProficientyType.Untrained;
+                        bool martialUnrained =
+                        info.Stats.WeaponProficienty[(int)WeaponType.Martial]
+                        == ProficientyType.Untrained;
 
-                                    bool advancedUnrained =
-                                    info.Stats.WeaponProficienty[(int)WeaponType.Advanced]
-                                    == ProficientyType.Untrained;
+                        bool advancedUnrained =
+                        info.Stats.WeaponProficienty[(int)WeaponType.Advanced]
+                        == ProficientyType.Untrained;
 
-                                    if(simpleUnrained)
-                                    {
-                                    info.Stats.WeaponProficienty[(int)WeaponType.Simple]
-                                        = ProficientyType.Trained;
-                                        return;
-                                    }
-                                    if(martialUnrained)
-                                    {
-                                    info.Stats.WeaponProficienty[(int)WeaponType.Martial]
-                                        = ProficientyType.Trained;
-                                        return;
-                                    }
-                                    if(advancedUnrained)
-                                    {
-                                    info.Stats.WeaponProficienty[(int)WeaponType.Advanced]
-                                        = ProficientyType.Trained;
-                                        return;
-                                    }
-                                },
-                            },
+                        if(simpleUnrained)
+                        {
+                        info.Stats.WeaponProficienty[(int)WeaponType.Simple]
+                            = ProficientyType.Trained;
+                            return;
+                        }
+                        if(martialUnrained)
+                        {
+                        info.Stats.WeaponProficienty[(int)WeaponType.Martial]
+                            = ProficientyType.Trained;
+                            return;
+                        }
+                        if(advancedUnrained)
+                        {
+                        info.Stats.WeaponProficienty[(int)WeaponType.Advanced]
+                            = ProficientyType.Trained;
+                            return;
+                        }
+                    },
+                },
 
-                            #endregion
+                #endregion
 
                 #region Level3
 
