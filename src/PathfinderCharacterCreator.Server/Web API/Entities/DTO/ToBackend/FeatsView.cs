@@ -1,4 +1,4 @@
-﻿namespace Web_API.Entities
+﻿namespace Web_API.Entities.DTO
 {
     /// <summary>
     /// Значение названий черт, приходящее со View.

@@ -1,7 +1,7 @@
 ﻿namespace Web_API.Controllers.Creation.Character
 {
     using Microsoft.AspNetCore.Mvc;
-    using Web_API.Entities;
+    using Web_API.Entities.DTO;
     using Web_API.Servicies;
 
     /// <summary>
@@ -24,6 +24,13 @@
             _creationService = service;
         }
 
+        [HttpGet]
+        [Route("Get")]
+        public ActionResult GetCurrentSkills(int characterID)
+        {
+            return Ok(_creationService.GetCurrentSkills(characterID));
+        }
+
         /// <summary>
         /// Пост запрос, отправляющий конечные значения навыков персонажа.
         /// </summary>
@@ -33,16 +40,8 @@
         [Route("Set")]
         public ActionResult<SkillsView> SetSkills([FromBody] SkillsView skills)
         {
-            try
-            {
-                _creationService.SetSkills(skills);
-
-                return Ok();
-            }
-            catch (Exception exception)
-            {
-                return BadRequest(exception.Message);
-            }
+            _creationService.SetSkills(skills);
+            return Ok();
         }
     }
 }

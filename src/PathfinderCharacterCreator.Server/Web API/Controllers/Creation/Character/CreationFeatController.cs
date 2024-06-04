@@ -1,7 +1,7 @@
 ﻿namespace Web_API.Controllers.Creation.Character
 {
     using Microsoft.AspNetCore.Mvc;
-    using Web_API.Entities;
+    using Web_API.Entities.DTO;
     using Web_API.Servicies;
 
     /// <summary>
@@ -24,6 +24,27 @@
             _creationService = service;
         }
 
+        [HttpGet]
+        [Route("Get")]
+        public ActionResult GetAllowedFeats(int characterID)
+        {
+            return Ok(_creationService.GetAllowedFeats(characterID));
+        }
+
+        [HttpGet]
+        [Route("GetCurrentCount")]
+        public ActionResult GetCurrentFeatsCount(int characterID)
+        {
+            return Ok(_creationService.GetCurrentFeatsCount(characterID));
+        }
+
+        [HttpGet]
+        [Route("GetCount")]
+        public ActionResult GetFeatsCount(int characterID)
+        {
+            return Ok(_creationService.GetFeatsCount(characterID));
+        }
+
         /// <summary>
         /// Пост запрос отправляющий список названий выбранных пользователем черт.
         /// </summary>
@@ -33,16 +54,8 @@
         [Route("Set")]
         public ActionResult<FeatsView> SetFeats([FromBody] FeatsView feats)
         {
-            try
-            {
-                _creationService.SetFeats(feats);
-
-                return Ok();
-            }
-            catch (Exception exception)
-            {
-                return BadRequest(exception.Message);
-            }
+            _creationService.SetFeats(feats);
+            return Ok();
         }
     }
 }

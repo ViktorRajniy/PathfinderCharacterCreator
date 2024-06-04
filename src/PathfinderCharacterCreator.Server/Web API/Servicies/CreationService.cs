@@ -2,11 +2,11 @@
 {
     using DataBaseAccess;
     using DataBaseAccess.Character;
+    using DataBaseAccess.CoreBook.Feats;
     using DataBaseAccess.CoreBook.Types;
     using Microsoft.EntityFrameworkCore;
-    using Model;
     using Model.Creation;
-    using Web_API.Entities;
+    using Web_API.Entities.DTO;
 
     public class CreationService
     {
@@ -45,10 +45,10 @@
             var character = _db.Characters
                                         .Include(c => c.General)
                                         .Include(c => c.Stats)
-                                        .Include(c=>c.CreationInfo)
+                                        .Include(c => c.CreationInfo)
                                         .ToList()
                                         .Find(c => c.ID == characterID);
-            if(character != null)
+            if (character != null)
             {
                 _character = character;
             }
@@ -94,6 +94,25 @@
         }
 
         /// <summary>
+        /// Формирует и возвращает структуру описывающую текущие характеристики и возможные выборы пользователя.
+        /// </summary>
+        /// <param name="characterID">ID персонажа.</param>
+        /// <returns>Структура описывающая характеристики персонажа.</returns>
+        public AbilitiesBack GetCurrentAbilities(int characterID)
+        {
+            var abilities = new AbilitiesBack();
+            GetCharacter(characterID);
+            foreach (AbilityType type in Enum.GetValues(typeof(AbilityType)))
+            {
+                abilities.Abilities[(int)type] = _character.Stats.Abilities[(int)type];
+            }
+            abilities.ClassAbilities = _character.CreationInfo.ClassOptionAbility;
+            abilities.AncestoryAbilities = _character.CreationInfo.AncestoryAbility;
+            abilities.BackgroundAbilities = _character.CreationInfo.BackgroundAbility;
+            return abilities;
+        }
+
+        /// <summary>
         /// Передающий фабрике конечные характеристики персонажа.
         /// </summary>
         /// <param name="abilitiesView"></param>
@@ -109,6 +128,29 @@
             _factory.SetAbilities(_character, abilities);
 
             _db.SaveChanges();
+        }
+
+        /// <summary>
+        /// Формирует и возвращает структуру описывающую список из которого нужно выбрать навыки и количество навыков.
+        /// </summary>
+        /// <param name="characterID">ID персонажа.</param>
+        /// <returns>Структура описывающая список возможных навыков персонажа.</returns>
+        public SkillsBack GetCurrentSkills(int characterID)
+        {
+            var skills = new SkillsBack();
+            GetCharacter(characterID);
+            int currentSkillCount = _factory.GetCurrentSkillCount(_character);
+            int skillCount = _factory.GetSkillCount(_character);
+            skills.SkillCount = skillCount - currentSkillCount;
+
+            foreach (SkillType type in Enum.GetValues(typeof(SkillType)))
+            {
+                if (_character.Stats.Skills[(int)type] == ProficientyType.Untrained)
+                {
+                    skills.AllowedSkillsList.Add(type);
+                }
+            }
+            return skills;
         }
 
         /// <summary>
@@ -130,23 +172,60 @@
         }
 
         /// <summary>
+        /// Возвращает структуру, со списком доступных персонажу для выбора черт и их количество.
+        /// </summary>
+        /// <param name="characterID">ID персонажа.</param>
+        /// <returns>Структура со списком черт.</returns>
+        public FeatsBack GetAllowedFeats(int characterID)
+        {
+            var feats = new FeatsBack();
+            var featManager = new FeatManager();
+            GetCharacter(characterID);
+
+            feats.ClassFeatCount = _character.CreationInfo.ClassFeatCount;
+            feats.AncestryFeatCount = _character.CreationInfo.AncestoryFeatCount;
+            feats.GeneralFeatCount = _character.CreationInfo.GeneralFeatCount;
+            feats.SkillFeatCount = _character.CreationInfo.SkillFeatCount;
+
+            var featList = new List<FeatBase>() { };
+            featList = featManager.GetAllowedFeats(_character);
+            foreach (FeatBase feat in featList)
+            {
+                feats.AllowedFeats.Add(_db.Feats.FirstOrDefault(f => f.Name == feat.Name));
+            }
+
+            return feats;
+        }
+
+        public List<int> GetCurrentFeatsCount(int characterID)
+        {
+            GetCharacter(characterID);
+            return _factory.GetCurrentFeatsCount(_character);
+        }
+
+        public List<int> GetFeatsCount(int characterID)
+        {
+            GetCharacter(characterID);
+            return _factory.GetFeatCount(_character);
+        }
+
+        /// <summary>
         /// Устанавливает персонажу черты.
         /// </summary>
         /// <param name="featsView">Список черт.</param>
         public void SetFeats(FeatsView featsView)
         {
             GetCharacter(featsView.Id);
-
             foreach (string feat in featsView.Feats)
+            {
                 _factory.SetFeat(_character, feat);
-
+            }
             _db.SaveChanges();
         }
 
         public void DeleteCharacter(int id)
         {
             _db.Characters.Remove(_db.Characters.Find(id));
-
             _db.SaveChanges();
         }
 
@@ -169,7 +248,7 @@
             _db.Characters.Add(character);
             _db.SaveChanges();
 
-            return _db.Characters.OrderBy(c=>c.ID).Last().ID;
+            return _db.Characters.OrderBy(c => c.ID).Last().ID;
         }
 
         private DBStats InitializeDBStats()
@@ -213,7 +292,19 @@
 
         private DBCreationInfo InitializeDBCreationInfo()
         {
-            var creationInfo = new DBCreationInfo();
+            var creationInfo = new DBCreationInfo
+            {
+                AncestoryFeatCount = 1,
+                ClassFeatCount = 1,
+                SkillFeatCount = 1,
+                GeneralFeatCount = 0,
+                AncestoryAbility = new List<AbilityType>() { },
+                BackgroundAbility = new List<AbilityType>() { },
+                ClassOptionAbility = new List<AbilityType>() { },
+                ClassSkillsCount = 0,
+            };
+
+            _db.CreationInfos.Add(creationInfo);
 
             return creationInfo;
         }

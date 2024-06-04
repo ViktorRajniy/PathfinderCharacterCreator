@@ -1,11 +1,11 @@
-﻿namespace Web_API.Entities
+﻿namespace Web_API.Entities.DTO
 {
     /// <summary>
     /// Структура данных приходящая со страницы Создание персонажа - Общее.
     /// </summary>
     public struct GeneralInfoView
     {
-        public int id {  get; set; }
+        public int id { get; set; }
 
         /// <summary>
         /// Имя персонажа.
