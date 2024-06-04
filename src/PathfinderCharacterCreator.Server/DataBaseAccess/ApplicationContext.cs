@@ -2463,8 +2463,7 @@
             #endregion
 
             #region LoreSkillFeats
-                  
-                 
+                                   
                   new DBFeat
                   {
                       Name = "Experienced professional",
@@ -2512,7 +2511,6 @@
                   
                   new DBFeat
                   {
-                      //исцеление (healing), воздействие (manipulate)
                       Name = "Battle medicine",
                       RussianName = "Боевая медицина",
                       Description = "Вы можете подлатать раны даже в бою. Совершите проверку Медицины " +
@@ -2521,7 +2519,11 @@
                       "проверку с более высоким КС, если у вас есть минимальный уровень мастерства. " +
                       "После этого, цель временно иммунна к вашей Боевой медицине на 1 день.",
                       Level = 1,
-                      Traits = new List<FeatTraits> { },
+                      Traits = new List<FeatTraits> 
+                      { 
+                          FeatTraits.Healing,
+                          FeatTraits.Manipulate,
+                      },
                       Type = FeatType.Skill,
                   },
                   new DBFeat

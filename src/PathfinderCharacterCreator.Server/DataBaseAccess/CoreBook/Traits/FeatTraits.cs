@@ -19,5 +19,15 @@
         /// Удача.
         /// </summary>
         Fortune,
+
+        /// <summary>
+        /// Исцеление.
+        /// </summary>
+        Healing,
+
+        /// <summary>
+        /// Воздействие.
+        /// </summary>
+        Manipulate
     }
 }
