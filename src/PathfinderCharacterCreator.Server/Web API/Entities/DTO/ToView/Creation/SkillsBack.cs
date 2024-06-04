@@ -1,4 +1,4 @@
-﻿namespace Web_API.Entities.DTO
+﻿namespace Web_API.Entities.DTO.ToView
 {
     using DataBaseAccess.CoreBook.Types;
 
