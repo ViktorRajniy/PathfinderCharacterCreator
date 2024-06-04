@@ -46,6 +46,8 @@
 
             character.CreationInfo.ClassSkillsCount += 2;
 
+            service.SetFeat(character, "Shield block");
+
             character.ItemNames.AddRange( new List<string>
                                 {
                                     "Hide",

@@ -1,7 +1,7 @@
-﻿using DataBaseAccess.CoreBook.Feats;
-
-namespace Web_API.Entities.DTO
+﻿namespace Web_API.Entities.DTO.ToView
 {
+    using DataBaseAccess.CoreBook.Feats;
+
     public class FeatsBack
     {
         public int ClassFeatCount { get; set; } = 0;

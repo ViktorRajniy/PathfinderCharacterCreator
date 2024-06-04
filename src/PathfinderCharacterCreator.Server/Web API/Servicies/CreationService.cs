@@ -7,6 +7,7 @@
     using Microsoft.EntityFrameworkCore;
     using Model.Creation;
     using Web_API.Entities.DTO;
+    using Web_API.Entities.DTO.ToView;
 
     public class CreationService
     {
@@ -197,12 +198,22 @@
             return feats;
         }
 
+        /// <summary>
+        /// Возвращает массив, в котором хранится текущее количество черт персонажа.
+        /// </summary>
+        /// <param name="characterID">ID персонажа.</param>
+        /// <returns>Массив с количеством черт.</returns>
         public List<int> GetCurrentFeatsCount(int characterID)
         {
             GetCharacter(characterID);
             return _factory.GetCurrentFeatsCount(_character);
         }
 
+        /// <summary>
+        /// Возвращает массив, в котором хранится количество черт, которыми должен владеть персонаж.
+        /// </summary>
+        /// <param name="characterID">ID персонажа.</param>
+        /// <returns>Массив с количеством черт.</returns>
         public List<int> GetFeatsCount(int characterID)
         {
             GetCharacter(characterID);
