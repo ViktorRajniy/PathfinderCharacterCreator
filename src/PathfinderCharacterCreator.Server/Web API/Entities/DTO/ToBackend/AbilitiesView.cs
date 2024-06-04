@@ -1,4 +1,4 @@
-﻿namespace Web_API.Entities
+﻿namespace Web_API.Entities.DTO
 {
     /// <summary>
     /// Итоговое значение характеристик персонажа.

@@ -50,24 +50,131 @@
             {
                 #region BaseFeats
 
-                            new FeatBase()
-                            {
-                                Name = "Night vision",
-                                Type = FeatType.Base,
-                                Level = 1,
-                                CanAssign = (info) => { return true; },
-                                Assign = (info) => {},
-                            },
-                            new FeatBase()
-                            {
-                                Name = "Low-light vision",
-                                Type = FeatType.Base,
-                                Level = 1,
-                                CanAssign = (info) => { return true; },
-                                Assign = (info) => {},
-                            },
+                new FeatBase()
+                {
+                    Name = "Night vision",
+                    Type = FeatType.Base,
+                    Level = 1,
+                    CanAssign = (info) => { return true; },
+                    Assign = (info) => {},
+                },
+                new FeatBase()
+                {
+                    Name = "Low-light vision",
+                    Type = FeatType.Base,
+                    Level = 1,
+                    CanAssign = (info) => { return true; },
+                    Assign = (info) => {},
+                },
+                new FeatBase()
+                {
+                    Name = "Ancient-blooded dwarf",
+                    Type = FeatType.Base,
+                    Level = 1,
+                    CanAssign = (info) =>
+                    {
+                        return info.General.Haritage == HaritageType.AncientBloodedDwarf;
+                    },
+                    Assign = (info) =>
+                    {
+                        info.ActionNames.Add("Call on ancient blood");
+                    },
+                },
+                new FeatBase()
+                {
+                    Name = "Death warden dwarf",
+                    Type = FeatType.Base,
+                    Level = 1,
+                    CanAssign = (info) =>
+                    {
+                        return info.General.Haritage == HaritageType.DeathWardenDwarf;
+                    },
+                    Assign = (info) => {},
+                },
+                new FeatBase()
+                {
+                    Name = "Unbreakable goblin",
+                    Type = FeatType.Base,
+                    Level = 1,
+                    CanAssign = (info) =>
+                    {
+                        return info.General.Haritage == HaritageType.UnbreakableGoblin;
+                    },
+                    Assign = (info) =>
+                    {
+                        info.Stats.CurrentHealthPoints +=4;
+                        info.Stats.MaxHealthPoints +=4;
+                    },
+                },
+                new FeatBase()
+                {
+                    Name = "Razortooth goblin",
+                    Type = FeatType.Base,
+                    Level = 1,
+                    CanAssign = (info) =>
+                    {
+                        return info.General.Haritage == HaritageType.RazortoothGoblin;
+                    },
+                    Assign = (info) =>
+                    {
+                        // TODO Атака зубами.
+                    },
+                },
+                new FeatBase()
+                {
+                    Name = "Cavern elf",
+                    Type = FeatType.Base,
+                    Level = 1,
+                    CanAssign = (info) =>
+                    {
+                        return info.General.Haritage == HaritageType.CavernElf;
+                    },
+                    Assign = (info) =>
+                    {
+                        info.FeatNames.Add("Night vision");
+                    },
+                },
+                new FeatBase()
+                {
+                    Name = "Woodland elf",
+                    Type = FeatType.Base,
+                    Level = 1,
+                    CanAssign = (info) =>
+                    {
+                        return info.General.Haritage == HaritageType.WoodlandElf;
+                    },
+                    Assign = (info) => { },
+                },
+                new FeatBase()
+                {
+                    Name = "Skilled heritage",
+                    Type = FeatType.Base,
+                    Level = 1,
+                    CanAssign = (info) =>
+                    {
+                        return info.General.Haritage == HaritageType.SkilledHeritage;
+                    },
+                    Assign = (info) =>
+                    {
+                        info.CreationInfo.ClassSkillsCount++;
+                    },
+                },
+                new FeatBase()
+                {
+                    Name = "Versatile heritage",
+                    Type = FeatType.Base,
+                    Level = 1,
+                    CanAssign = (info) =>
+                    {
+                        return info.General.Haritage == HaritageType.VersatileHeritage;
+                    },
+                    Assign = (info) =>
+                    {
+                        info.CreationInfo.GeneralFeatCount++;
+                    },
+                },
 
-                            #endregion
+                #endregion
 
                 #region GeneralFeats
 
@@ -452,7 +559,7 @@
                     CanAssign = (info) => { return true; },
                     Assign = (info) =>
                     {
-                        info.CreationInfo.SkillsCount++;
+                        info.CreationInfo.ClassSkillsCount++;
                     },
                 },
 
@@ -1878,31 +1985,6 @@
                 
                 new FeatBase()
                 {
-                    Name = "Ancient-blooded dwarf",
-                    Type = FeatType.Ancestory,
-                    Level = 1,
-                    CanAssign = (info) =>
-                    {
-                        return info.General.Haritage == HaritageType.AncientBloodedDwarf;
-                    },
-                    Assign = (info) => 
-                    {
-                        info.ActionNames.Add("Call on ancient blood");
-                    },
-                },
-                new FeatBase()
-                {
-                    Name = "Death warden dwarf",
-                    Type = FeatType.Ancestory,
-                    Level = 1,
-                    CanAssign = (info) =>
-                    {
-                        return info.General.Haritage == HaritageType.DeathWardenDwarf;
-                    },
-                    Assign = (info) => {},
-                },
-                new FeatBase()
-                {
                     Name = "Dwarven lore",
                     Type = FeatType.Ancestory,
                     Level = 1,
@@ -1915,7 +1997,7 @@
                         }
                         else
                         {
-                            info.CreationInfo.SkillsCount++;
+                            info.CreationInfo.ClassSkillsCount++;
                         }
                         if(info.Stats.Skills[(int)SkillType.Religion] == ProficientyType.Untrained)
                         {
@@ -1923,7 +2005,7 @@
                         }
                         else
                         {
-                            info.CreationInfo.SkillsCount++;
+                            info.CreationInfo.ClassSkillsCount++;
                         }
                     }
                 },
@@ -1974,35 +2056,6 @@
                 
                 new FeatBase()
                 {
-                    Name = "Unbreakable goblin",
-                    Type = FeatType.Ancestory,
-                    Level = 1,
-                    CanAssign = (info) =>
-                    {
-                        return info.General.Haritage == HaritageType.UnbreakableGoblin;
-                    },
-                    Assign = (info) =>
-                    {
-                        info.Stats.CurrentHealthPoints +=4;
-                        info.Stats.MaxHealthPoints +=4;
-                    },
-                },
-                new FeatBase()
-                {
-                    Name = "Razortooth goblin",
-                    Type = FeatType.Ancestory,
-                    Level = 1,
-                    CanAssign = (info) =>
-                    {
-                        return info.General.Haritage == HaritageType.RazortoothGoblin;
-                    },
-                    Assign = (info) =>
-                    {
-                        // TODO Атака зубами.
-                    },
-                },
-                new FeatBase()
-                {
                     Name = "Burn it",
                     Type = FeatType.Ancestory,
                     Level = 1,
@@ -2031,7 +2084,7 @@
                         }
                         else
                         {
-                            info.CreationInfo.SkillsCount++;
+                            info.CreationInfo.ClassSkillsCount++;
                         }
                         if(info.Stats.Skills[(int)SkillType.Stealth] == ProficientyType.Untrained)
                         {
@@ -2039,7 +2092,7 @@
                         }
                         else
                         {
-                            info.CreationInfo.SkillsCount++;
+                            info.CreationInfo.ClassSkillsCount++;
                         }
                     },
                 },
@@ -2048,31 +2101,6 @@
 
                 #region ElfFeats
                 
-                new FeatBase()
-                {
-                    Name = "Cavern elf",
-                    Type = FeatType.Ancestory,
-                    Level = 1,
-                    CanAssign = (info) =>
-                    {
-                        return info.General.Haritage == HaritageType.CavernElf;
-                    },
-                    Assign = (info) =>
-                    {
-                        info.FeatNames.Add("Night vision");
-                    },
-                },
-                new FeatBase()
-                {
-                    Name = "Woodland elf",
-                    Type = FeatType.Ancestory,
-                    Level = 1,
-                    CanAssign = (info) =>
-                    {
-                        return info.General.Haritage == HaritageType.WoodlandElf;
-                    },
-                    Assign = (info) => { },
-                },
                 new FeatBase()
                 {
                     Name = "Elven lore",
@@ -2087,7 +2115,7 @@
                         }
                         else
                         {
-                            info.CreationInfo.SkillsCount++;
+                            info.CreationInfo.ClassSkillsCount++;
                         }
                         if(info.Stats.Skills[(int)SkillType.Nature] == ProficientyType.Untrained)
                         {
@@ -2095,7 +2123,7 @@
                         }
                         else
                         {
-                            info.CreationInfo.SkillsCount++;
+                            info.CreationInfo.ClassSkillsCount++;
                         }
                     },
                 },
@@ -2126,15 +2154,74 @@
 
                 #endregion
 
+                #region HumanFeats
+                                
+                new FeatBase()
+                {
+                    Name = "Cooperative nature",
+                    Type = FeatType.Ancestory,
+                    Level = 1,
+                    CanAssign = (info) => { return info.General.Ancestry == AncestryType.Human; },
+                    Assign = (info) => {},
+                },
+                new FeatBase()
+                {
+                    Name = "Cooperative nature",
+                    Type = FeatType.Ancestory,
+                    Level = 1,
+                    CanAssign = (info) => { return info.General.Ancestry == AncestryType.Human; },
+                    Assign = (info) => {},
+                },
+                new FeatBase()
+                {
+                    Name = "General Training",
+                    Type = FeatType.Ancestory,
+                    Level = 1,
+                    CanAssign = (info) => { return info.General.Ancestry == AncestryType.Human; },
+                    Assign = (info) => {},
+                },
+                new FeatBase()
+                {
+                    Name = "Haughty obstinacy",
+                    Type = FeatType.Ancestory,
+                    Level = 1,
+                    CanAssign = (info) => { return info.General.Ancestry == AncestryType.Human; },
+                    Assign = (info) => {},
+                },
+                new FeatBase()
+                {
+                    Name = "Natural ambition",
+                    Type = FeatType.Ancestory,
+                    Level = 1,
+                    CanAssign = (info) => { return info.General.Ancestry == AncestryType.Human; },
+                    Assign = (info) =>
+                    {
+                        info.CreationInfo.ClassFeatCount++;
+                    },
+                },
+                new FeatBase()
+                {
+                    Name = "Natural skill",
+                    Type = FeatType.Ancestory,
+                    Level = 1,
+                    CanAssign = (info) => { return info.General.Ancestry == AncestryType.Human; },
+                    Assign = (info) =>
+                    {
+                        info.CreationInfo.ClassSkillsCount += 2;
+                    },
+                },
+
+                #endregion
+
                 #endregion
 
                 #region ClassFeats
 
-                            #region FighterFeats
+                #region FighterFeats
 
-                            #region Level1
+                #region Level1
 
-                            new FeatBase()
+                new FeatBase()
                             {
                                 Name = "Double slice",
                                 Type = FeatType.Class,

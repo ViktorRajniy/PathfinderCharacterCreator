@@ -1,7 +1,7 @@
 ﻿namespace Web_API.Controllers.Creation.Character
 {
     using Microsoft.AspNetCore.Mvc;
-    using Web_API.Entities;
+    using Web_API.Entities.DTO;
     using Web_API.Servicies;
 
     /// <summary>

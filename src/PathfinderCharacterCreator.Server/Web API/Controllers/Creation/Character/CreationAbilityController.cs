@@ -1,7 +1,7 @@
 ﻿namespace Web_API.Controllers.Creation.Character
 {
     using Microsoft.AspNetCore.Mvc;
-    using Web_API.Entities;
+    using Web_API.Entities.DTO;
     using Web_API.Servicies;
 
     /// <summary>
@@ -25,6 +25,18 @@
         }
 
         /// <summary>
+        /// Возвращает текущее значение характеристик персонажа.
+        /// </summary>
+        /// <param name="characterID">ID персонажа в БД.</param>
+        /// <returns>Код сервера.</returns>
+        [HttpGet]
+        [Route("Get")]
+        public ActionResult<AbilitiesBack> GetCurrentAbilities(int characterID)
+        {
+            return Ok(_creationService.GetCurrentAbilities(characterID));
+        }
+
+        /// <summary>
         /// Пост запрос, отправляющий конечные значения характеристик персонажа.
         /// </summary>
         /// <param name="abilities">Конечные значения характеристик персонажа.</param>
@@ -33,16 +45,8 @@
         [Route("Set")]
         public ActionResult<AbilitiesView> SetAbilities([FromBody] AbilitiesView abilities)
         {
-            try
-            {
-                _creationService.SetAbilities(abilities);
-
-                return Ok();
-            }
-            catch (Exception exception)
-            {
-                return BadRequest(exception.Message);
-            }
+            _creationService.SetAbilities(abilities);
+            return Ok();
         }
     }
 }

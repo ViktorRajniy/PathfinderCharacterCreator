@@ -113,7 +113,6 @@
         /// Присваивает персонажу черту.
         /// </summary>
         /// <param name="character">Изменяемый персонаж.</param>
-        /// <param name="info">Информация о создании персонажа.</param>
         /// <param name="featName">Применяемая черта.</param>
         /// <returns>Изменённый персонаж.</returns>
         public void SetFeat(DBCharacter character, string featName)

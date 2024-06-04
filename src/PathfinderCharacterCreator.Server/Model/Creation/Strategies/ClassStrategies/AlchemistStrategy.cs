@@ -43,7 +43,7 @@
                                         ProficientyType.Trained,
                                         ProficientyType.Untrained);
 
-            character.CreationInfo.SkillsCount += 2;
+            character.CreationInfo.ClassSkillsCount += 2;
 
             character.ItemNames.AddRange(new List<string>
                                 {

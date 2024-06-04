@@ -29,6 +29,7 @@
             var character = _db.Characters
                                         .Include(c => c.General)
                                         .Include(c => c.Stats)
+                                        .Include(c => c.CreationInfo)
                                         .ToList()
                                         .Find(c => c.ID == characterID);
             if (character != null)
@@ -44,6 +45,7 @@
             var characters = _db.Characters
                                         .Include(c => c.General)
                                         .Include(c => c.Stats)
+                                        .Include(c => c.CreationInfo)
                                         .ToList();
 
             return characters;
