@@ -1,0 +1,12 @@
+.divBorder {
+	background-color: antiquewhite;
+	padding: 5px;
+	margin: 5px;
+	border-color: black;
+	border-width: 2px;
+}
+
+text {
+	text-align: center;
+	font-style:initial;
+}
