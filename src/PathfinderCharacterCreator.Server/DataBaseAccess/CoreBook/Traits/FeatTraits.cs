@@ -28,6 +28,32 @@
         /// <summary>
         /// Воздействие.
         /// </summary>
-        Manipulate
+        Manipulate,
+
+        /// <summary>
+        /// Недееспособность.
+        /// </summary>
+        Incapacitation,
+
+        /// <summary>
+        /// Страх.
+        /// </summary>
+        Fear,
+
+        ///<summary>
+        ///Эмоция.
+        ///<summary>
+        Emotion,
+            
+        /// <summary>
+        /// Отдых.
+        /// </summary>
+        Downtime,
+
+        /// <summary>
+        /// Необычный.
+        /// </summary>
+        Uncommon,
+
     }
 }
