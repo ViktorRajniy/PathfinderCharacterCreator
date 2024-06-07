@@ -28,7 +28,7 @@
         [Route("GetSkills")]
         public ActionResult GetCharacterSkills(int characterID)
         {
-            return Ok(_browseService.GetFeats(characterID));
+            return Ok(_browseService.GetSkills(characterID));
         }
     }
 }

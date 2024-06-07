@@ -531,5 +531,31 @@ namespace Web_API.Servicies
                 ("There is no such character Size in the program")
             };
         }
+
+        public string RusSkillName(SkillType skill)
+        {
+            return skill switch
+            {
+                SkillType.Acrobatics => "Акробатика",
+                SkillType.Arcana => "Аркана",
+                SkillType.Athletics => "Атлетика",
+                SkillType.Crafting => "Ремесло",
+                SkillType.Deception => "Обман",
+                SkillType.Diplomacy => "Дипломатия",
+                SkillType.Intimidation => "Запугивание",
+                SkillType.Lore => "Знание",
+                SkillType.Medicine => "Медицина",
+                SkillType.Nature => "Природа",
+                SkillType.Occultism => "Оккультизм",
+                SkillType.Performance => "Выступление",
+                SkillType.Religion => "Религия",
+                SkillType.Society => "Общество",
+                SkillType.Stealth => "Скрытность",
+                SkillType.Survival => "Выживание",
+                SkillType.Thievery => "Воровство",
+                SkillType.Perception => "Внимательность",
+                _ => "",
+            };
+        }
     }
 }

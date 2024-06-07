@@ -4,7 +4,9 @@
     using DataBaseAccess.Character;
     using DataBaseAccess.CoreBook.Equipment;
     using DataBaseAccess.CoreBook.Feats;
+    using DataBaseAccess.CoreBook.Types;
     using Microsoft.EntityFrameworkCore;
+    using Model;
     using Web_API.Entities.DTO.ToView.Browse;
 
     public class BrowseService
@@ -89,7 +91,7 @@
             foreach (var item in _character.ItemNames)
             {
                 var findedItem = _db.Items.Find(item);
-                if(findedItem != null)
+                if (findedItem != null)
                 {
                     itemList.Add(findedItem);
                 }
@@ -97,6 +99,27 @@
             return itemList;
         }
 
-        
+        public List<BrowseSkillBack> GetSkills(int characterID)
+        {
+            GetCharacter(characterID);
+
+            var list = new List<BrowseSkillBack>();
+            var get = new EnumGetter();
+
+            var mod = new ModifierCalculator();
+            var modList = mod.SkillModifiers(_character);
+
+            foreach (SkillType skill in Enum.GetValues(typeof(SkillType)))
+            {
+                list.Add(new BrowseSkillBack
+                {
+                    Name = get.RusSkillName(skill),
+                    Modifier = modList[skill],
+                    Description = "",
+                });
+            }
+
+            return list;
+        }
     }
 }
