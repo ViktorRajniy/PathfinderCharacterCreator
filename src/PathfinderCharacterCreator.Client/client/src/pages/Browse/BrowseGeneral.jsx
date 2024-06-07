@@ -1,9 +1,15 @@
+import { useEffect, useState } from "react";
 import BrowseGeneralListElement from "../../Components/BrowseGeneralListElement/BrowseGeneralListElement";
-import { useState } from 'react'
 
-export default function BrowseGeneral() {
-	const BASE_URL = "https://localhost:7160/api/"
+export default function BrowseGeneral({ characterID }) {
+
+	const BASE_URL = "https://localhost:7160/api/BrowseGeneral/Get?characterID="
+
 	const [responseData, setResponseData] = useState("Hello world")
+
+	useEffect(() => {
+		testFetch(BASE_URL + characterID)
+	}, [])
 
 	const testFetch = async (requestUrl) => {
 		const response = await fetch(requestUrl, {
@@ -29,14 +35,14 @@ export default function BrowseGeneral() {
 
 	return (
 		<>
-			<BrowseGeneralListElement Signature="Имя" Value={responseData.Name} />
-			<BrowseGeneralListElement Signature="Родословная" Value="asd" />
-			<BrowseGeneralListElement Signature="Наследие" Value="asd" />
-			<BrowseGeneralListElement Signature="Предыстория" Value="asd" />
-			<BrowseGeneralListElement Signature="Класс" Value="asd" />
-			<BrowseGeneralListElement Signature="Размер" Value="asd" />
-			<BrowseGeneralListElement Signature="Маровоззрение" Value="asd" />
-			<BrowseGeneralListElement Signature="Божество" Value="asd" />
+			<BrowseGeneralListElement Signature="Имя" Value={responseData.name} />
+			<BrowseGeneralListElement Signature="Родословная" Value={responseData.ancestryName} />
+			<BrowseGeneralListElement Signature="Наследие" Value={responseData.haritageName} />
+			<BrowseGeneralListElement Signature="Предыстория" Value={responseData.backgroundName} />
+			<BrowseGeneralListElement Signature="Класс" Value={responseData.subClassName} />
+			<BrowseGeneralListElement Signature="Размер" Value={responseData.size} />
+			<BrowseGeneralListElement Signature="Маровоззрение" Value={responseData.aligment} />
+			<BrowseGeneralListElement Signature="Божество" Value={responseData.deityName} />
 			<button>Повысить уровень</button>
 		</>
 	)

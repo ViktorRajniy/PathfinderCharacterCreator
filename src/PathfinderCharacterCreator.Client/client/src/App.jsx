@@ -8,7 +8,7 @@ function App() {
 
 	return (
 		<>
-			<BrowseGeneral />
+			<BrowseGeneral characterID="2"/>
 		</>
 	)
 }
