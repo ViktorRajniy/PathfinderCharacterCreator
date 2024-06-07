@@ -1,8 +1,7 @@
 ﻿namespace Model.Creation.Strategies
 {
+    using DataBaseAccess.Character;
     using DataBaseAccess.CoreBook.Types;
-    using Model.Editor;
-    using Model.LevelManager;
 
     /// <summary>
     /// Класс задающий значения Чемпиона создаваемому персонажу.
@@ -43,7 +42,7 @@
                                         ProficientyType.Trained,
                                         ProficientyType.Trained);
 
-            character.CreationInfo.ClassSkillsCount += 2;
+            character.CreationInfo.SkillsCount += 2;
 
             character.ItemNames.AddRange(new List<string>
                                 {

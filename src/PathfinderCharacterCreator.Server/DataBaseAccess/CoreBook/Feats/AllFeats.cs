@@ -156,7 +156,7 @@
                     },
                     Assign = (info) =>
                     {
-                        info.CreationInfo.ClassSkillsCount++;
+                        info.CreationInfo.SkillsCount++;
                     },
                 },
                 new FeatBase()
@@ -554,7 +554,7 @@
                     CanAssign = (info) => { return true; },
                     Assign = (info) =>
                     {
-                        info.CreationInfo.ClassSkillsCount++;
+                        info.CreationInfo.SkillsCount++;
                     },
                 },
 
@@ -1989,10 +1989,10 @@
                         if(info.Stats.Skills[(int)SkillType.Crafting] == ProficientyType.Untrained)
                         {
                             info.Stats.Skills[(int)SkillType.Crafting] = ProficientyType.Trained;
-                        }
+                        }   
                         else
                         {
-                            info.CreationInfo.ClassSkillsCount++;
+                            info.CreationInfo.SkillsCount++;
                         }
                         if(info.Stats.Skills[(int)SkillType.Religion] == ProficientyType.Untrained)
                         {
@@ -2000,7 +2000,7 @@
                         }
                         else
                         {
-                            info.CreationInfo.ClassSkillsCount++;
+                            info.CreationInfo.SkillsCount++;
                         }
                     }
                 },
@@ -2079,7 +2079,7 @@
                         }
                         else
                         {
-                            info.CreationInfo.ClassSkillsCount++;
+                            info.CreationInfo.SkillsCount++;
                         }
                         if(info.Stats.Skills[(int)SkillType.Stealth] == ProficientyType.Untrained)
                         {
@@ -2087,7 +2087,7 @@
                         }
                         else
                         {
-                            info.CreationInfo.ClassSkillsCount++;
+                            info.CreationInfo.SkillsCount++;
                         }
                     },
                 },
@@ -2110,7 +2110,7 @@
                         }
                         else
                         {
-                            info.CreationInfo.ClassSkillsCount++;
+                            info.CreationInfo.SkillsCount++;
                         }
                         if(info.Stats.Skills[(int)SkillType.Nature] == ProficientyType.Untrained)
                         {
@@ -2118,7 +2118,7 @@
                         }
                         else
                         {
-                            info.CreationInfo.ClassSkillsCount++;
+                            info.CreationInfo.SkillsCount++;
                         }
                     },
                 },
@@ -2202,9 +2202,10 @@
                     CanAssign = (info) => { return info.General.Ancestry == AncestryType.Human; },
                     Assign = (info) =>
                     {
-                        info.CreationInfo.ClassSkillsCount += 2;
+                        info.CreationInfo.SkillsCount += 2;
                     },
                 },
+
 
                 #endregion
 

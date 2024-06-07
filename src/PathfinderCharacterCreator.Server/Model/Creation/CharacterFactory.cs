@@ -103,7 +103,7 @@
         public int GetSkillCount(DBCharacter character)
         {
             int count = 2;
-            count += character.CreationInfo.ClassSkillsCount;
+            count += character.CreationInfo.SkillsCount;
             count += (character.Stats.Abilities[(int)AbilityType.Intelligence] - 10) / 2;
             return count;
         }

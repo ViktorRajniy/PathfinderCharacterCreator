@@ -1,8 +1,7 @@
 ﻿namespace Model.Creation.Strategies
 {
+    using DataBaseAccess.Character;
     using DataBaseAccess.CoreBook.Types;
-    using Model.Editor;
-    using Model.LevelManager;
 
     /// <summary>
     /// Класс задающий значения Воина создаваемому персонажу.
@@ -22,7 +21,6 @@
             character.CreationInfo.ClassOptionAbility = [AbilityType.Strength, AbilityType.Dexterity];
 
             character.Stats.Skills[(int)SkillType.Perception]
-            character.Info.Stats.Skills[(int)SkillType.Perception]
                 = ProficientyType.Expert;
 
             service.SetHealthPoints(character, 10);
@@ -43,10 +41,9 @@
                                         ProficientyType.Trained,
                                         ProficientyType.Trained,
                                         ProficientyType.Trained);
-            character.CreationInfo.ClassSkillsCount += 2;
+            character.CreationInfo.SkillsCount += 2;
 
             service.SetFeat(character, "Shield block");
-            info.SkillsCount += 3;
 
             character.ItemNames.AddRange( new List<string>
                                 {
