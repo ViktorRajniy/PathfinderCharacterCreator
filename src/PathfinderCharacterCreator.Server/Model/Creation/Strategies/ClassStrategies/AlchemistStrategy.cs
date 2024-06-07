@@ -1,6 +1,5 @@
 ﻿namespace Model.Creation.Strategies
 {
-    using DataBaseAccess.Character;
     using DataBaseAccess.CoreBook.Types;
     using Model.Editor;
     using Model.LevelManager;

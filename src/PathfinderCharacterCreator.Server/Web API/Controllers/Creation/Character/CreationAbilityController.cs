@@ -46,8 +46,16 @@
         [Route("Set")]
         public ActionResult<AbilitiesView> SetAbilities([FromBody] AbilitiesView abilities)
         {
-            _creationService.SetAbilities(abilities);
-            return Ok();
+            try
+            {
+                _creationService.SetAbilities(abilities);
+
+                return Ok();
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception.Message);
+            }
         }
     }
 }

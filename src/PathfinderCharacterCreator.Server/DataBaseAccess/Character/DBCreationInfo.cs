@@ -40,7 +40,7 @@
         /// <summary>
         /// Количество навыков персонажа.
         /// </summary>
-        public int ClassSkillsCount { get; set; } = 0;
+        public int SkillsCount { get; set; } = 0;
 
         /// <summary>
         /// Количество классовых черт.

@@ -40,8 +40,16 @@
         [Route("Set")]
         public ActionResult<SkillsView> SetSkills([FromBody] SkillsView skills)
         {
-            _creationService.SetSkills(skills);
-            return Ok();
+            try
+            {
+                _creationService.SetSkills(skills);
+
+                return Ok();
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception.Message);
+            }
         }
     }
 }

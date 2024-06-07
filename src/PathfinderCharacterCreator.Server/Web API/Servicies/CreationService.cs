@@ -2,7 +2,6 @@
 {
     using DataBaseAccess;
     using DataBaseAccess.Character;
-    using DataBaseAccess.CoreBook.Feats;
     using DataBaseAccess.CoreBook.Types;
     using Microsoft.EntityFrameworkCore;
     using Model.Creation;

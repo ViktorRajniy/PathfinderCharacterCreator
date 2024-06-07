@@ -54,8 +54,16 @@
         [Route("Set")]
         public ActionResult<FeatsView> SetFeats([FromBody] FeatsView feats)
         {
-            _creationService.SetFeats(feats);
-            return Ok();
+            try
+            {
+                _creationService.SetFeats(feats);
+
+                return Ok();
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception.Message);
+            }
         }
     }
 }
