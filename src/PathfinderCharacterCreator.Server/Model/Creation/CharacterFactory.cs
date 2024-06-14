@@ -9,20 +9,6 @@
     /// </summary>
     public class CharacterFactory
     {
-
-        /// <summary>
-        /// Промежуточная информация для создания персонажа.
-        /// </summary>
-        public DBCreationInfo CreationInfo { get; private set; }
-
-        /// <summary>
-        /// Конструктор класса.
-        /// </summary>
-        public CharacterFactory()
-        {
-            CreationInfo = new DBCreationInfo();
-        }
-
         /// <summary>
         /// Присваивает параметры, зависящие от расы, класса и предыстории 
         /// в поля персонажа.
