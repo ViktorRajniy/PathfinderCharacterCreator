@@ -40,9 +40,9 @@
         /// </summary>
         Fear,
 
-        ///<summary>
-        ///Эмоция.
-        ///<summary>
+        /// <summary>
+        /// Эмоция.
+        /// </summary>
         Emotion,
             
         /// <summary>

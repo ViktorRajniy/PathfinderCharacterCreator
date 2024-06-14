@@ -14,5 +14,30 @@
         /// Движение
         /// </summary>
         Move,
+
+        /// <summary>
+        /// Натиск.
+        /// </summary>
+        Press,
+
+        /// <summary>
+        /// Начальный.
+        /// </summary>
+        Open,
+
+        /// <summary>
+        /// Стойка.
+        /// </summary>
+        Stance,
+
+        /// <summary>
+        /// Размах.
+        /// </summary>
+        Flourism,
+
+        /// <summary>
+        /// Ментальный.
+        /// </summary>
+        Mental,
     }
 }
