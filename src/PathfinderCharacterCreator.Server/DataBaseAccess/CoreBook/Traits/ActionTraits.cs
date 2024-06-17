@@ -39,5 +39,15 @@
         /// Ментальный.
         /// </summary>
         Mental,
+
+        /// <summary>
+        /// Метамагия.
+        /// </summary>
+        Metamagic,
+
+        /// <summary>
+        /// Концентрация.
+        /// </summary>
+        Concentrate,
     }
 }

@@ -55,5 +55,10 @@
         /// </summary>
         Uncommon,
 
+        /// <summary>
+        /// Клятва.
+        /// </summary>
+        Oath,
+
     }
 }
