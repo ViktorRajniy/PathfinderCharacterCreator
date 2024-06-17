@@ -19,6 +19,12 @@
         public string Name { get; set; } = "???";
 
         /// <summary>
+        /// Название действия на русском языке.
+        /// </summary>
+        [Required]
+        public string RussianName { get; set; } = "???";
+
+        /// <summary>
         /// Описание элемента.
         /// </summary>
         [Required]
