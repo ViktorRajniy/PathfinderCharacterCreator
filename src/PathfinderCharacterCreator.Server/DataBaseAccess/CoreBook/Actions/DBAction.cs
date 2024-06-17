@@ -16,7 +16,7 @@
         /// </summary>
         [Key]
         [Required]
-        public string Name { get; set; } = "???";
+        public string ActName { get; set; } = "???";
 
         /// <summary>
         /// Название действия на русском языке.
