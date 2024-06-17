@@ -18,7 +18,7 @@
 
             character.General.ClassName = ClassType.Champion;
 
-            character.CreationInfo.ClassOptionAbility = [AbilityType.Strength, AbilityType.Dexterity];
+            character.CreationInfo.ClassAbility = [AbilityType.Strength, AbilityType.Dexterity];
 
             character.Stats.Skills[(int)SkillType.Perception]
                 = ProficientyType.Trained;

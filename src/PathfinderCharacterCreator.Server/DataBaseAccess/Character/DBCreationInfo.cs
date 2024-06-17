@@ -3,6 +3,7 @@
     using DataBaseAccess.CoreBook.Types;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Text.Json.Serialization;
 
     /// <summary>
     /// Описывает информацию о персонаже для создания.
@@ -18,6 +19,18 @@
         public int ID { get; set; }
 
         /// <summary>
+        /// ID персонажа, которому пренадлежит информация.
+        /// </summary>
+        public int CharacterID { get; set; }
+
+        /// <summary>
+        /// Навигационное свойство.
+        /// </summary>
+        [JsonIgnore]
+        [ForeignKey(nameof(CharacterID))]
+        public DBCharacter? Character { get; set; }
+
+        /// <summary>
         /// Список доступных для повышения характеристик родословной.
         /// Может быть пустым, в случае 2 свободных характеристик.
         /// </summary>
@@ -29,7 +42,7 @@
         /// Может быть пустым, если не нужно выбирать характеристику.
         /// </summary>
         [Required]
-        public List<AbilityType> ClassOptionAbility { get; set; } = new List<AbilityType>() { };
+        public List<AbilityType> ClassAbility { get; set; } = new List<AbilityType>() { };
 
         /// <summary>
         /// Список из двух доступных для повышения характеристик предыстории.

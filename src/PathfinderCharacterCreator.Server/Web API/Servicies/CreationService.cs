@@ -107,7 +107,7 @@
             {
                 abilities.Abilities[(int)type] = _character.Stats.Abilities[(int)type];
             }
-            abilities.ClassAbilities = _character.CreationInfo.ClassOptionAbility;
+            abilities.ClassAbilities = _character.CreationInfo.ClassAbility;
             abilities.AncestoryAbilities = _character.CreationInfo.AncestoryAbility;
             abilities.BackgroundAbilities = _character.CreationInfo.BackgroundAbility;
             return abilities;
@@ -183,10 +183,12 @@
             var featManager = new FeatManager();
             GetCharacter(characterID);
 
-            feats.ClassFeatCount = _character.CreationInfo.ClassFeatCount;
-            feats.AncestryFeatCount = _character.CreationInfo.AncestoryFeatCount;
-            feats.GeneralFeatCount = _character.CreationInfo.GeneralFeatCount;
-            feats.SkillFeatCount = _character.CreationInfo.SkillFeatCount;
+            var featsCount = GetCurrentFeatsCount(characterID);
+
+            feats.ClassFeatCount = featsCount[(int)FeatType.Class];
+            feats.AncestryFeatCount = featsCount[(int)FeatType.Ancestory];
+            feats.GeneralFeatCount = featsCount[(int)FeatType.General];
+            feats.SkillFeatCount = featsCount[(int)FeatType.Skill];
 
             var featList = new List<FeatBase>() { };
             featList = featManager.GetAllowedFeats(_character);
@@ -206,18 +208,16 @@
         public List<int> GetCurrentFeatsCount(int characterID)
         {
             GetCharacter(characterID);
-            return _factory.GetCurrentFeatsCount(_character);
-        }
+            var currentFeats = _factory.GetCurrentFeatsCount(_character);
+            var feats = _factory.GetFeatCount(_character);
+            var featsNeed = new List<int>();
 
-        /// <summary>
-        /// Возвращает массив, в котором хранится количество черт, которыми должен владеть персонаж.
-        /// </summary>
-        /// <param name="characterID">ID персонажа.</param>
-        /// <returns>Массив с количеством черт.</returns>
-        public List<int> GetFeatsCount(int characterID)
-        {
-            GetCharacter(characterID);
-            return _factory.GetFeatCount(_character);
+            foreach(FeatType type in Enum.GetValues(typeof(FeatType)))
+            {
+                featsNeed.Add(feats[(int)type] - currentFeats[(int)type]);
+            }
+
+            return featsNeed;
         }
 
         /// <summary>
@@ -244,7 +244,7 @@
         {
             var character = new DBCharacter()
             {
-                UserId = 1,
+                UserID = 1,
                 Name = "Test Character",
                 Level = 1,
                 General = general,
@@ -311,7 +311,7 @@
                 GeneralFeatCount = 0,
                 AncestoryAbility = new List<AbilityType>() { },
                 BackgroundAbility = new List<AbilityType>() { },
-                ClassOptionAbility = new List<AbilityType>() { },
+                ClassAbility = new List<AbilityType>() { },
                 SkillsCount = 0,
             };
 

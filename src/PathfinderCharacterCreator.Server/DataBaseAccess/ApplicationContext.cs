@@ -54,7 +54,7 @@
             modelBuilder.Entity<DBUser>().HasData(
             new DBUser
             {
-                Id = 1,
+                ID = 1,
                 Email = "email",
                 Password = "password",
                 CharacterList = new List<DBCharacter> {}

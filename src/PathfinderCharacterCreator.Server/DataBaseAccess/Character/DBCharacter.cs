@@ -21,13 +21,13 @@
         /// ID пользователя, которому пренадлежит персонаж.
         /// </summary>
         [Required]
-        public int UserId { get; set; }
+        public int UserID { get; set; }
 
         /// <summary>
         /// Навигационное свойство.
         /// </summary>
         [JsonIgnore]
-        [ForeignKey(nameof(UserId))]
+        [ForeignKey(nameof(UserID))]
         public DBUser? User { get; set; }
 
         /// <summary>

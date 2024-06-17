@@ -15,12 +15,10 @@
         /// <param name="character">Объект персонажа.</param>
         /// <param name="healthPoints">Добавляемое число пунктов здоровья.</param>
         /// <returns>Изменённый объект персонажа.</returns>
-        public DBCharacter SetHealthPoints(DBCharacter character, int healthPoints)
+        public void SetHealthPoints(DBCharacter character, int healthPoints)
         {
             character.Stats.CurrentHealthPoints += healthPoints;
             character.Stats.MaxHealthPoints += healthPoints;
-
-            return character;
         }
 
         /// <summary>
@@ -31,7 +29,7 @@
         /// <param name="secondBonusAbility">Тип характеристики, которую нужно повысить.</param>
         /// <param name="penaltyAbility">Тип характеристики, которую нужно понизить.</param>
         /// <returns></returns>
-        public DBCharacter SetAbility(DBCharacter character,
+        public void SetAbility(DBCharacter character,
                                         AbilityType firstBonusAbility,
                                         AbilityType secondBonusAbility,
                                         AbilityType penaltyAbility)
@@ -39,8 +37,6 @@
             character.Stats.Abilities[(int)firstBonusAbility] += 2;
             character.Stats.Abilities[(int)(int)secondBonusAbility] += 2;
             character.Stats.Abilities[(int)penaltyAbility] -= 2;
-
-            return character;
         }
 
         /// <summary>
@@ -51,7 +47,7 @@
         /// <param name="reflex">Значение спасброска реакции.</param>
         /// <param name="will">Значение спасброска воли.</param>
         /// <returns>Изменённый объект персонажа.</returns>
-        public DBCharacter SetSavingThrows(DBCharacter character,
+        public void SetSavingThrows(DBCharacter character,
                                                 ProficientyType fortitude,
                                                 ProficientyType reflex,
                                                 ProficientyType will)
@@ -59,8 +55,6 @@
             character.Stats.SavingThrows[(int)SavingThrowType.Fortitude] = fortitude;
             character.Stats.SavingThrows[(int)SavingThrowType.Reflex] = reflex;
             character.Stats.SavingThrows[(int)SavingThrowType.Will] = will;
-
-            return character;
         }
 
         /// <summary>
@@ -72,7 +66,7 @@
         /// <param name="martial">Умение в обращении особым оружием.</param>
         /// <param name="advanced">Умение в обращении продвинутым оружием.</param>
         /// <returns>Изменённый объект персонажа.</returns>
-        public DBCharacter SetWeaponProficienty(DBCharacter character,
+        public void SetWeaponProficienty(DBCharacter character,
                                                 ProficientyType unarmored,
                                                 ProficientyType simple,
                                                 ProficientyType martial,
@@ -82,8 +76,6 @@
             character.Stats.WeaponProficienty[(int)WeaponType.Simple] = simple;
             character.Stats.WeaponProficienty[(int)WeaponType.Martial] = martial;
             character.Stats.WeaponProficienty[(int)WeaponType.Advanced] = advanced;
-
-            return character;
         }
 
         /// <summary>
@@ -95,7 +87,7 @@
         /// <param name="medium">Умение в обращении со средней бронёй.</param>
         /// <param name="heavy">Умение в обращении с тяжёлыми доспехами.</param>
         /// <returns>Изменённый объект персонажа.</returns>
-        public DBCharacter SetArmorProficienty(DBCharacter character,
+        public void SetArmorProficienty(DBCharacter character,
                                                 ProficientyType unarmored,
                                                 ProficientyType light,
                                                 ProficientyType medium,
@@ -105,8 +97,6 @@
             character.Stats.ArmorProficienty[(int)ArmorType.Light] = light;
             character.Stats.ArmorProficienty[(int)ArmorType.Medium] = medium;
             character.Stats.ArmorProficienty[(int)ArmorType.Heavy] = heavy;
-
-            return character;
         }
 
         /// <summary>

@@ -3,6 +3,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Web_API.Servicies;
 
+    [Route("api/[controller]")]
     public class BrowseSkillController : Controller
     {
         /// <summary>
@@ -25,7 +26,7 @@
         /// <param name="characterID">ID персонажа.</param>
         /// <returns>Общая информация о персонаже.</returns>
         [HttpGet]
-        [Route("GetSkills")]
+        [Route("Get")]
         public ActionResult GetCharacterSkills(int characterID)
         {
             return Ok(_browseService.GetSkills(characterID));

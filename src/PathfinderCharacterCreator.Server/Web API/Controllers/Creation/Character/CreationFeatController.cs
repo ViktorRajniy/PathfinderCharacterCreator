@@ -38,13 +38,6 @@
             return Ok(_creationService.GetCurrentFeatsCount(characterID));
         }
 
-        [HttpGet]
-        [Route("GetCount")]
-        public ActionResult GetFeatsCount(int characterID)
-        {
-            return Ok(_creationService.GetFeatsCount(characterID));
-        }
-
         /// <summary>
         /// Пост запрос отправляющий список названий выбранных пользователем черт.
         /// </summary>

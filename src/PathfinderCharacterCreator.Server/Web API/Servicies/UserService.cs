@@ -42,7 +42,7 @@ namespace Web_API.Servicies
         {
             return _db.Users.Include(u => u.CharacterList)
                             .ToList()
-                            .Find(u => u.Id == id);
+                            .Find(u => u.ID == id);
         }
 
         public List<DBUser> GetUsersList()
