@@ -49,5 +49,15 @@
         /// Концентрация.
         /// </summary>
         Concentrate,
+
+        /// <summary>
+        /// Аркана.
+        /// </summary>
+        Arcana,
+
+        /// <summary>
+        /// Преграждение.
+        /// </summary>
+        Abjuration,
     }
 }

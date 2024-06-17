@@ -60,5 +60,10 @@
         /// </summary>
         Oath,
 
+        /// <summary>
+        /// Примесь.
+        /// </summary>
+        Additive,
+
     }
 }
