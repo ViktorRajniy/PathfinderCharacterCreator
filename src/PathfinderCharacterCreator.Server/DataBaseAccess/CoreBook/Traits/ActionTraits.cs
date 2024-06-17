@@ -59,5 +59,15 @@
         /// Преграждение.
         /// </summary>
         Abjuration,
+
+        /// <summary>
+        /// Страх.
+        /// </summary>
+        Fear,
+
+        /// <summary>
+        /// Эмоция.
+        /// </summary>
+        Emotion,
     }
 }
