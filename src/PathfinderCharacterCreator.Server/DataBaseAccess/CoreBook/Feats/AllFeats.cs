@@ -2213,6 +2213,26 @@
 
                 #region ClassFeats
 
+                #region ChampionFeats
+
+                new FeatBase()
+                {
+                    Name = "Ranged reprisal",
+                    Type = FeatType.Class,
+                    Level = 1,
+                    CanAssign = (info) =>
+                    {
+                        return (info.General.ClassName == ClassType.Champion) &&
+                        (info.General.SubClass == SubClassType.PaladinChampion);
+                    },
+                    Assign = (info) =>
+                    {
+                        info.ActionNames.Add("Ranged reprisal");
+                    },
+                },
+
+#endregion
+
                 #region FighterFeats
 
                 #region Level1
